@@ -11,8 +11,6 @@ public class Planet : MonoBehaviour
     public FaceRenderMask faceRenderMask;
 
     public ShapeSettings shapeSettings;
-    public Color planetColour;
-
     public Material material;
 
     [HideInInspector]
@@ -63,7 +61,6 @@ public class Planet : MonoBehaviour
     {
         Initialize();
         GenerateMesh();
-        GenerateColours();
     }
 
     public void OnShapeSettingsUpdated()
@@ -80,7 +77,6 @@ public class Planet : MonoBehaviour
         if (autoUpdate)
         {
             Initialize();
-            GenerateColours();
         }
     }
 
@@ -92,14 +88,6 @@ public class Planet : MonoBehaviour
             {
                 terrainFaces[i].ConstructMesh();
             }
-        }
-    }
-
-    void GenerateColours()
-    {
-        foreach (MeshFilter mesh in meshFilters)
-        {
-            mesh.GetComponent<MeshRenderer>().sharedMaterial.color = planetColour;
         }
     }
 }

@@ -75,7 +75,7 @@ void HandlePlanetAtmosphere_hlsl_float(float2 uv, float3 inputCol, float depth, 
 		float coefScatter= (distThrough)/(planetSize*2.);
 		float3 pcolshadow = planetPos+normalize(planetPos)*.1;//*planetSize; // origin of the center of the gradient
 		float3 rgb = viewDir;
-		coefScatter = pow(coefScatter,lerp(2., 3., saturate(depth/1000.)))*2.5*(1.-sat(distToAtmos/10.));
+		coefScatter = pow(coefScatter,lerp(1., 4., saturate(depth/100.)))*2.5;//*(1.-sat(distToAtmos/10.));
 		float oklerp = 1.-sat(dot(normalize(hitPos-planetPos), normalize(planetPos)));
 		planetColA *= sat((length(hitPos+normalize(planetPos)*.5)-planetSize*.5)*10.);
 		float oklerp2 = sat(dot(viewDir, normalize(hitPos-planetPos)));

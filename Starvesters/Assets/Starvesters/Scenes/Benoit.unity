@@ -2951,7 +2951,7 @@ MonoBehaviour:
   autoUpdate: 1
   faceRenderMask: 0
   shapeSettings: {fileID: 11400000, guid: 6b77c224f575a384db8f3ae896c6db4a, type: 2}
-  planetColour: {r: 0.052187793, g: 0.0046279924, b: 0.9811321, a: 0}
+  planetColour: {r: 0.031113155, g: 0.0141509175, b: 1, a: 0}
   material: {fileID: 2100000, guid: eeef4001bec51774588db47cafbc0021, type: 2}
   shapeSettingsFoldout: 1
   meshFilters:
@@ -3902,16 +3902,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.49445915
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0.5
+        value: 0.05000305
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -4221,7 +4212,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2b9c2e0987fb8734d9b7f4e8d6c42105, type: 2}
+  - {fileID: 2100000, guid: 94627812188839244bea9761f4a6e1fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4270,7 +4261,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.05696678
+        value: 0.050719835
         inSlope: 0
         outSlope: 0
         tangentMode: 0
