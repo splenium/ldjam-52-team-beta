@@ -27,16 +27,20 @@ public class Planet : MonoBehaviour
 
     [SerializeField, HideInInspector]
     MeshFilter[] meshFilters;
+    [SerializeField, HideInInspector]
+    MeshCollider[] meshColliders;
+
     TerrainFace[] terrainFaces;
 
     void Initialize()
     {
         shapeGenerator = new ShapeGenerator(shapeSettings);
 
-        if (meshFilters == null || meshFilters.Length == 0)
-        {
+        //if (meshFilters == null || meshFilters.Length == 0)
+        //{
             meshFilters = new MeshFilter[6];
-        }
+            meshColliders = new MeshCollider[6];
+        //}
         terrainFaces = new TerrainFace[6];
 
         Vector3[] directions = { Vector3.up, Vector3.down, Vector3.left, Vector3.right, Vector3.forward, Vector3.back };
@@ -50,10 +54,11 @@ public class Planet : MonoBehaviour
 
                 meshObj.AddComponent<MeshRenderer>().sharedMaterial = material;
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
+                meshColliders[i] = meshObj.AddComponent<MeshCollider>();
                 meshFilters[i].sharedMesh = new Mesh();
             }
 
-            terrainFaces[i] = new TerrainFace(shapeGenerator, meshFilters[i].sharedMesh, resolution, directions[i]);
+            terrainFaces[i] = new TerrainFace(shapeGenerator, meshFilters[i].sharedMesh, meshColliders[i], resolution, directions[i]);
             bool renderFace = faceRenderMask == FaceRenderMask.All || (int)faceRenderMask - 1 == i;
             meshFilters[i].gameObject.SetActive(renderFace);
         }

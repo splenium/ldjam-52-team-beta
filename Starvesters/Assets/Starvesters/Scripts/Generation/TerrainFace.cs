@@ -6,17 +6,19 @@ public class TerrainFace {
 
     ShapeGenerator shapeGenerator;
     Mesh mesh;
+    MeshCollider collider;
     int resolution;
     Vector3 localUp;
     Vector3 axisA;
     Vector3 axisB;
 
-    public TerrainFace(ShapeGenerator shapeGenerator, Mesh mesh, int resolution, Vector3 localUp)
+    public TerrainFace(ShapeGenerator shapeGenerator, Mesh mesh, MeshCollider collider, int resolution, Vector3 localUp)
     {
         this.shapeGenerator = shapeGenerator;
         this.mesh = mesh;
         this.resolution = resolution;
         this.localUp = localUp;
+        this.collider= collider;
 
         axisA = new Vector3(localUp.y, localUp.z, localUp.x);
         axisB = Vector3.Cross(localUp, axisA);
@@ -56,5 +58,8 @@ public class TerrainFace {
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
+
+        collider.convex = false;
+        collider.sharedMesh = mesh;
     }
 }
