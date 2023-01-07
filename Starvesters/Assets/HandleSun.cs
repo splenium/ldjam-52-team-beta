@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class HandleSun : MonoBehaviour
 {
-    public Material SunMat;
     public Color SunColor;
     void Update()
     {
-        //SunMat.SetColor("_SunColor", SunColor);
+        this.gameObject.GetComponent<MeshRenderer>().material.SetColor("_SunCol", SunColor);
     }
 }

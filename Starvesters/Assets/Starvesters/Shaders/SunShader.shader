@@ -3,6 +3,7 @@ Shader "Unlit/SunShader"
     Properties
     {
         _NoiseTex ("Noise", 2D) = "white" {}
+        _SunCol("Sun Color", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -35,6 +36,7 @@ Shader "Unlit/SunShader"
             sampler2D _NoiseTex;
             float4 _NoiseTex_ST;
             float _time;
+            float3 _SunCol;
             v2f vert (appdata v)
             {
                 v2f o;
@@ -118,7 +120,7 @@ Shader "Unlit/SunShader"
                     float f = 1.;
                     if (res.y == 1.)
                         f = 4.;//*saturate(dot(rd, -normalize(p)));
-                    accCol += float3(1.000, 0.792, 0.502) * (1. - saturate(res.x / .5)) * .041 * f;
+                    accCol += _SunCol * (1. - saturate(res.x / .5)) * .041 * f;
                 }
                 return -1.;
             }
@@ -127,7 +129,7 @@ Shader "Unlit/SunShader"
             {
                 float3 col = 0.;
                 float rad = 3.;
-                float an = _time;
+                float an = _time*.5;
                 float3 ro = float3(sin(an) * rad, 0., cos(an) * rad);
                 float3 ta = float3(0., 0., 0.);
                 float3 rd = normalize(ta - ro);
@@ -146,9 +148,9 @@ Shader "Unlit/SunShader"
                     float pattSunDark = tex2D(_NoiseTex, sunuv * .05 + float2(_time * .0002, sin(_time * .012) * .2)).x +
                         tex2D(_NoiseTex, sunuv * .1 + .2 * tex2D(_NoiseTex, mul(float2(1., 4.) * sunuv * .01,r2d(sunuv.x + _time * .01))).xx).x;
 
-                    col = float3(0.859, 0.224, 0.224) * matterFloat * 1. * tex2D(_NoiseTex, sunuv * .05).x
+                    col = _SunCol.zxy * matterFloat * .5 * tex2D(_NoiseTex, sunuv * .05).x
                         + pattSunDark *
-                        .7 * float3(0.957, 0.769, 0.365) * (1. - saturate(dot(rd, n) + 1.2));
+                        1.7 * _SunCol * (1. - saturate(dot(rd, n) + 1.2));
                     col = lerp(col, col * .0, tex2D(_NoiseTex, sunuv * .05).x * (1. - matterFloat));
                     col -= saturate((tex2D(_NoiseTex, sunuv * .05).x + tex2D(_NoiseTex, sunuv * .04 + _time * .001).x) * .5 - .6);
                     col -= tex2D(_NoiseTex, sunuv * 3.).x * .25;
@@ -165,8 +167,8 @@ Shader "Unlit/SunShader"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                _time = _Time.y*.1;
-                float4 col = rdr((i.uv-.5)*2.,i.uv);
+                _time = _Time.y*.3;
+                float4 col = rdr((i.uv-.5)*2.,i.uv)*2.;
                 return col;
             }
             ENDCG
