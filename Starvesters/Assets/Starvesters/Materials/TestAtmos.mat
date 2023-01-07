@@ -109,9 +109,9 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _PlanetASize: 2
-    - _PlanetBSize: 2
-    - _PlanetCSize: 2
+    - _PlanetASize: 5
+    - _PlanetBSize: 5
+    - _PlanetCSize: 15
     - _PlanetSize: 1
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -132,14 +132,15 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PlanetAColA: {r: 0.3800627, g: 1, b: 0, a: 0}
-    - _PlanetAColB: {r: 1, g: 0.6698078, b: 0, a: 0}
-    - _PlanetBColA: {r: 1, g: 0, b: 0.7325125, a: 0}
-    - _PlanetBColB: {r: 0.5849056, g: 0.124154516, b: 0.124154516, a: 0}
-    - _PlanetBPos: {r: 4.32, g: -0.03264284, b: -9.54, a: 0}
-    - _PlanetCColA: {r: 1, g: 0, b: 0, a: 0}
-    - _PlanetCColB: {r: 0, g: 0.4848323, b: 1, a: 0}
-    - _PlanetCPos: {r: 5.63, g: -0.03264284, b: -1.06, a: 0}
+    - _PlanetAColA: {r: 1, g: 0, b: 0, a: 0}
+    - _PlanetAColB: {r: 0.8207547, g: 0.7306811, b: 0.127759, a: 0}
+    - _PlanetAPos: {r: -14.112581, g: 0, b: -26.473305, a: 0}
+    - _PlanetBColA: {r: 0.11196155, g: 0.6415094, b: 0.21440257, a: 0}
+    - _PlanetBColB: {r: 0.810094, g: 0.8867924, b: 0.10457456, a: 0}
+    - _PlanetBPos: {r: -69.97914, g: 0, b: 71.434616, a: 0}
+    - _PlanetCColA: {r: 0.051886797, g: 0.084604956, b: 1, a: 0}
+    - _PlanetCColB: {r: 0.6764121, g: 0, b: 1, a: 0}
+    - _PlanetCPos: {r: -32.506386, g: 0, b: -197.33997, a: 0}
     - _PlanetCol: {r: 0, g: 0, b: 0, a: 0}
     - _PlanetPos: {r: 0, g: 0, b: 0, a: 0}
     - _PlanetPosition: {r: 0, g: 0, b: 0, a: 0}

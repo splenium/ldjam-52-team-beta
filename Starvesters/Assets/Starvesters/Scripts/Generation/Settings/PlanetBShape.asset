@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27d30c4684909994db2202124d63f42b, type: 3}
-  m_Name: Shape
+  m_Name: PlanetBShape
   m_EditorClassIdentifier: 
-  planetSize: 1
+  planetSize: 2
   noiseLayers:
   - enabled: 1
     useFirstLayerAsMask: 0
     noiseSettings:
       filterType: 0
       simpleNoiseSettings:
-        strength: 0.12
-        roughness: 0.5
+        strength: -1
+        roughness: 1.06
         numLayers: 4
         baseRoughness: 4.6
-        persistence: 1
+        persistence: 0.2
         center: {x: 11.29, y: -0.78, z: 2.47}
-        minValue: 1
+        minValue: 0
       rigidNoiseSettings:
         strength: 0
         roughness: 0
