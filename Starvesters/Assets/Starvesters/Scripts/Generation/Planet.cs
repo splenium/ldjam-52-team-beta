@@ -31,11 +31,11 @@ public class Planet : MonoBehaviour
     {
         shapeGenerator = new ShapeGenerator(shapeSettings);
 
-        //if (meshFilters == null || meshFilters.Length == 0)
-        //{
+        if (meshFilters == null || meshFilters.Length == 0)
+        {
             meshFilters = new MeshFilter[6];
             meshColliders = new MeshCollider[6];
-        //}
+        }
         terrainFaces = new TerrainFace[6];
 
         Vector3[] directions = { Vector3.up, Vector3.down, Vector3.left, Vector3.right, Vector3.forward, Vector3.back };
