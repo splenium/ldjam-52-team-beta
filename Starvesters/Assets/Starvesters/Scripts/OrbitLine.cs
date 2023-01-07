@@ -6,7 +6,7 @@ namespace Assets.Starvesters.Scripts
     [ExecuteInEditMode]
     public class OrbitLine : MonoBehaviour
     {
-        [Range(3, 36)]
+        [Range(3, 100)]
         public int _segments;
         public LineRenderer _lineRenderer;
 
@@ -34,6 +34,7 @@ namespace Assets.Starvesters.Scripts
 
             return new Ellipse(distance);
         }
+
         public void Awake()
         {
             CalculatePlanetEllipse();
