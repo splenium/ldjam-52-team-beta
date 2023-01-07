@@ -109,7 +109,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _PlanetASize: 1
+    - _PlanetASize: 1.41
     - _PlanetSize: 1
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -126,12 +126,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - PlanetAPos: {r: 0, g: 0, b: 0, a: 0}
+    - PlanetAPos: {r: 0, g: 0, b: -5.51, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PlanetAColA: {r: 0, g: 0, b: 0, a: 0}
-    - _PlanetAColB: {r: 0, g: 0, b: 0, a: 0}
+    - _PlanetAColA: {r: 0.2863681, g: 0.1764706, b: 0.29411766, a: 1}
+    - _PlanetAColB: {r: 0.3254717, g: 0.90549314, b: 1, a: 1}
     - _PlanetCol: {r: 0, g: 0, b: 0, a: 0}
     - _PlanetPos: {r: 0, g: 0, b: 0, a: 0}
     - _PlanetPosition: {r: 0, g: 0, b: 0, a: 0}

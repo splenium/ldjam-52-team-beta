@@ -1112,7 +1112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1454374531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.688, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2149,10 +2149,9 @@ MonoBehaviour:
   autoUpdate: 1
   faceRenderMask: 0
   shapeSettings: {fileID: 11400000, guid: 6b77c224f575a384db8f3ae896c6db4a, type: 2}
-  colourSettings: {fileID: 11400000, guid: 14b264a4877bf594593fe6d2088d48fc, type: 2}
+  planetColour: {r: 0, g: 0, b: 0, a: 0}
   material: {fileID: 2100000, guid: c773a3503c4c3b044bfe71dbfe94ffa9, type: 2}
   shapeSettingsFoldout: 1
-  colourSettingsFoldout: 1
   meshFilters:
   - {fileID: 1295046558}
   - {fileID: 1978140685}
@@ -2160,6 +2159,7 @@ MonoBehaviour:
   - {fileID: 1376763497}
   - {fileID: 1143274891}
   - {fileID: 1051714335}
+  meshColliders: []
 --- !u!4 &1702846745
 Transform:
   m_ObjectHideFlags: 0
@@ -2168,7 +2168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702846742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.18}
+  m_LocalPosition: {x: 0, y: 0, z: -5.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

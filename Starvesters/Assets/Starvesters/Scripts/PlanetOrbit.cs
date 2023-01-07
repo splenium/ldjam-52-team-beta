@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine;
-using static UnityEngine.Rendering.HableCurve;
+﻿using UnityEngine;
 
 namespace Assets.Starvesters.Scripts
 {

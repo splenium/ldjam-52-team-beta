@@ -81,6 +81,7 @@ void HandlePlanetAtmosphere_hlsl_float(float2 uv, float3 inputCol, float depth, 
 		float oklerp2 = sat(dot(viewDir, normalize(hitPos-planetPos)));
 		rgb = lerp(planetColA, planetColB, oklerp);
 		rgb *= oklerp2;
+		rgb *= 1.+pow(sat(dot(normalize(planetPos), viewDir)-.95),2.5)*1500.*float3(224, 182, 34)/255.;
 		col = lerp(inputCol, rgb, sat(coefScatter));
 
 	}
