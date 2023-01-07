@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetSize: 46.5
   noiseLayers:
-  - enabled: 0
+  - enabled: 1
     useFirstLayerAsMask: 0
     noiseSettings:
       filterType: 0
@@ -35,6 +35,27 @@ MonoBehaviour:
         center: {x: 0, y: 0, z: 0}
         minValue: 0
         weightMultiplier: 0
+  - enabled: 1
+    useFirstLayerAsMask: 0
+    noiseSettings:
+      filterType: 1
+      simpleNoiseSettings:
+        strength: 0
+        roughness: 0
+        numLayers: 0
+        baseRoughness: 0
+        persistence: 0
+        center: {x: 0, y: 0, z: 0}
+        minValue: 0
+      rigidNoiseSettings:
+        strength: 0.1
+        roughness: 0.85
+        numLayers: 4
+        baseRoughness: 3.02
+        persistence: 1.11
+        center: {x: 0, y: 0, z: 0}
+        minValue: 1.5
+        weightMultiplier: 0.72
   - enabled: 1
     useFirstLayerAsMask: 0
     noiseSettings:
