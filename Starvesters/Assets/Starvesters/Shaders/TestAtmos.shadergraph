@@ -768,7 +768,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "_PlanetAPos",
     "m_DefaultReferenceName": "_PlanetAPos",
-    "m_OverrideReferenceName": "PlanetAPos",
+    "m_OverrideReferenceName": "_PlanetAPos",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
