@@ -23,9 +23,5 @@ namespace Assets.Starvesters.Scripts
             }
             
         }
-
-        
-
-        
     }
 }
