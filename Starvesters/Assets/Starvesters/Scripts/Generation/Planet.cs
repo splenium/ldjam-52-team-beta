@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Planet : MonoBehaviour
 {
@@ -14,14 +11,12 @@ public class Planet : MonoBehaviour
     public FaceRenderMask faceRenderMask;
 
     public ShapeSettings shapeSettings;
-    public ColourSettings colourSettings;
+    public Color planetColour;
 
     public Material material;
 
     [HideInInspector]
     public bool shapeSettingsFoldout;
-    [HideInInspector]
-    public bool colourSettingsFoldout;
 
     ShapeGenerator shapeGenerator;
 
@@ -104,7 +99,7 @@ public class Planet : MonoBehaviour
     {
         foreach (MeshFilter mesh in meshFilters)
         {
-            mesh.GetComponent<MeshRenderer>().sharedMaterial.color = colourSettings.planetColour;
+            mesh.GetComponent<MeshRenderer>().sharedMaterial.color = planetColour;
         }
     }
 }
