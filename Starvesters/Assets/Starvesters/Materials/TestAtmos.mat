@@ -128,18 +128,19 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - PlanetAPos: {r: 0, g: 0, b: -5.51, a: 0}
+    - PlanetAPos: {r: 0, g: 0, b: -4.78, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _PlanetAColA: {r: 0.3800627, g: 1, b: 0, a: 0}
     - _PlanetAColB: {r: 1, g: 0.6698078, b: 0, a: 0}
+    - _PlanetAPos: {r: -8, g: 0, b: -6.7, a: 0}
     - _PlanetBColA: {r: 1, g: 0, b: 0.7325125, a: 0}
     - _PlanetBColB: {r: 0.5849056, g: 0.124154516, b: 0.124154516, a: 0}
-    - _PlanetBPos: {r: 4.32, g: -0.03264284, b: -9.54, a: 0}
+    - _PlanetBPos: {r: 19.72, g: -0.03264284, b: -2.92, a: 0}
     - _PlanetCColA: {r: 1, g: 0, b: 0, a: 0}
     - _PlanetCColB: {r: 0, g: 0.4848323, b: 1, a: 0}
-    - _PlanetCPos: {r: 5.63, g: -0.03264284, b: -1.06, a: 0}
+    - _PlanetCPos: {r: 16.26, g: -0.03264284, b: 19.83, a: 0}
     - _PlanetCol: {r: 0, g: 0, b: 0, a: 0}
     - _PlanetPos: {r: 0, g: 0, b: 0, a: 0}
     - _PlanetPosition: {r: 0, g: 0, b: 0, a: 0}
