@@ -34,7 +34,7 @@ Shader "Unlit/SunShader"
 
             sampler2D _NoiseTex;
             float4 _NoiseTex_ST;
-
+            float _time;
             v2f vert (appdata v)
             {
                 v2f o;
@@ -79,19 +79,19 @@ Shader "Unlit/SunShader"
                 for (float i = 0.; i < 8.; ++i)
                 {
 
-                    rad -= -tex2D(_NoiseTex, uv * .03 * (1. + i) + _Time.y * .001).x * .05 / (1. + i);
+                    rad -= -tex2D(_NoiseTex, uv * .03 * (1. + i) + _time * .001).x * .05 / (1. + i);
                 }
                 float shape = length(p) - rad;
                 float sz = 15.;
-                float gyroid = dot(sin(p * sz + float3(0., 0., _Time.y * .25)), cos(p.yzx * sz)) / sz;
+                float gyroid = dot(sin(p * sz + float3(0., 0., _time * .25)), cos(p.yzx * sz)) / sz;
                 //shape = min(shape, sin(p.x*10.)+1.2);
                 //shape = min(shape, gyroid+length(p)*.25);
                 acc = _min(acc, float2(shape, 0.));
                 uv = mul(uv, r2d(sin(uv.x * 5. + uv.y * 3.) * 2.));
                 //uv* r2d(p.y * 10.);
                 //uv.x += sin(uv.y*10.);
-                gyroid = max(tex2D(_NoiseTex, uv * .1 + _Time.y * .002).x - .1, length(p) - 1.3);
-                gyroid = max(gyroid, -(length(normalize(p) * 1.) - 1.25));
+                gyroid = max(tex2D(_NoiseTex, uv * .1 + _time * .002).x - .1, length(p) - 1.3);
+                //gyroid = max(gyroid, -(length(normalize(p) * 1.) - 1.25));
                 acc = _min(acc, float2(gyroid, 1.));
 
                 return acc;
@@ -127,7 +127,7 @@ Shader "Unlit/SunShader"
             {
                 float3 col = 0.;
                 float rad = 3.;
-                float an = _Time.y;
+                float an = _time;
                 float3 ro = float3(sin(an) * rad, 0., cos(an) * rad);
                 float3 ta = float3(0., 0., 0.);
                 float3 rd = normalize(ta - ro);
@@ -143,14 +143,14 @@ Shader "Unlit/SunShader"
                     col = n * .5 + .5;
                     float2 sunuv = float2(atan2(p.z, p.x), acos(p.y));
                     float matterFloat = (saturate(dot(rd, n) + .9));
-                    float pattSunDark = tex2D(_NoiseTex, sunuv * .05 + float2(_Time.y * .0002, sin(_Time.y * .012) * .2)).x +
-                        tex2D(_NoiseTex, sunuv * .1 + .2 * tex2D(_NoiseTex, mul(float2(1., 4.) * sunuv * .01,r2d(sunuv.x + _Time.y * .01))).xx).x;
+                    float pattSunDark = tex2D(_NoiseTex, sunuv * .05 + float2(_time * .0002, sin(_time * .012) * .2)).x +
+                        tex2D(_NoiseTex, sunuv * .1 + .2 * tex2D(_NoiseTex, mul(float2(1., 4.) * sunuv * .01,r2d(sunuv.x + _time * .01))).xx).x;
 
                     col = float3(0.859, 0.224, 0.224) * matterFloat * 1. * tex2D(_NoiseTex, sunuv * .05).x
                         + pattSunDark *
                         .7 * float3(0.957, 0.769, 0.365) * (1. - saturate(dot(rd, n) + 1.2));
                     col = lerp(col, col * .0, tex2D(_NoiseTex, sunuv * .05).x * (1. - matterFloat));
-                    col -= saturate((tex2D(_NoiseTex, sunuv * .05).x + tex2D(_NoiseTex, sunuv * .04 + _Time.y * .001).x) * .5 - .6);
+                    col -= saturate((tex2D(_NoiseTex, sunuv * .05).x + tex2D(_NoiseTex, sunuv * .04 + _time * .001).x) * .5 - .6);
                     col -= tex2D(_NoiseTex, sunuv * 3.).x * .25;
                     col -= tex2D(_NoiseTex, sunuv * 3.2).x * .25;
                     col += .28;
@@ -165,6 +165,7 @@ Shader "Unlit/SunShader"
 
             fixed4 frag(v2f i) : SV_Target
             {
+                _time = _Time.y*.1;
                 float4 col = rdr((i.uv-.5)*2.,i.uv);
                 return col;
             }
