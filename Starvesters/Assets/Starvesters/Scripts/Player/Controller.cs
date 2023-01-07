@@ -10,11 +10,7 @@ public class Controller : MonoBehaviour
     public Rigidbody body;
     public float SpeedAccerelation = 1;
 
-    //[ReadOnly]
-    [SerializeField]
-    private Vector3 velocity;
-
-
+    public Vector3 SpeedDecay = new Vector3(.1f, .1f, .1f);
 
     public void MoveDirection(InputAction.CallbackContext context)
     {
@@ -24,14 +20,15 @@ public class Controller : MonoBehaviour
     void Start()
     {
         _moveDirection = new Vector2(0,0);
-        velocity = body.velocity;
     }
 
     // Update is called once per frame
     void Update()
     {
         Debug.Log(body.velocity);
-        Vector3 applyForce = new Vector3(_moveDirection.x * SpeedAccerelation * Time.deltaTime, body.velocity.y, _moveDirection.y * SpeedAccerelation * Time.deltaTime);
+
+        Vector3 applyForce = new Vector3(_moveDirection.x * SpeedAccerelation * Time.deltaTime, 0, _moveDirection.y * SpeedAccerelation * Time.deltaTime);
+        applyForce = applyForce + Vector3.Scale(body.velocity * -1, SpeedDecay);
         body.AddRelativeForce(applyForce);
     }
 }
