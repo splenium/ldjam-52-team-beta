@@ -26,17 +26,17 @@ public class HandlePlanetAtmosParams : MonoBehaviour
     void Update()
     {
         AtmosphereMaterial.SetVector("_PlanetAPos", PlanetA.transform.position);
-        AtmosphereMaterial.SetFloat("PlanetASize", PlanetASize);
+        AtmosphereMaterial.SetFloat("_PlanetASize", PlanetASize);
         AtmosphereMaterial.SetColor("_PlanetAColA", PlanetAColorA);
         AtmosphereMaterial.SetColor("_PlanetAColB", PlanetAColorB);
 
-        AtmosphereMaterial.SetVector("_PlanetBPos", PlanetA.transform.position);
-        AtmosphereMaterial.SetFloat("PlanetBSize", PlanetASize);
-        AtmosphereMaterial.SetColor("_PlanetBColA", PlanetAColorA);
-        AtmosphereMaterial.SetColor("_PlanetBColB", PlanetAColorB);
+        AtmosphereMaterial.SetVector("_PlanetBPos", PlanetB.transform.position);
+        AtmosphereMaterial.SetFloat("_PlanetBSize", PlanetBSize);
+        AtmosphereMaterial.SetColor("_PlanetBColA", PlanetBColorA);
+        AtmosphereMaterial.SetColor("_PlanetBColB", PlanetBColorB);
 
         AtmosphereMaterial.SetVector("_PlanetCPos", PlanetC.transform.position);
-        AtmosphereMaterial.SetFloat("PlanetCSize", PlanetCSize);
+        AtmosphereMaterial.SetFloat("_PlanetCSize", PlanetCSize);
         AtmosphereMaterial.SetColor("_PlanetCColA", PlanetCColorA);
         AtmosphereMaterial.SetColor("_PlanetCColB", PlanetCColorB);
     }
