@@ -2173,7 +2173,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d50ea8d4a6bf7264db6cf5bb5c6cdb26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AtmosphereMaterial: {fileID: 0}
+  AtmosphereMaterial: {fileID: 2100000, guid: a867686b225c1f847b860be83a934717, type: 2}
+  PlanetA: {fileID: 0}
+  PlanetASize: 0
+  PlanetAColorA: {r: 0, g: 0, b: 0, a: 0}
+  PlanetAColorB: {r: 0, g: 0, b: 0, a: 0}
+  PlanetB: {fileID: 0}
+  PlanetBSize: 0
+  PlanetBColorA: {r: 0, g: 0, b: 0, a: 0}
+  PlanetBColorB: {r: 0, g: 0, b: 0, a: 0}
+  PlanetC: {fileID: 0}
+  PlanetCSize: 0
+  PlanetCColorA: {r: 0, g: 0, b: 0, a: 0}
+  PlanetCColorB: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1702846744
 MonoBehaviour:
   m_ObjectHideFlags: 0
