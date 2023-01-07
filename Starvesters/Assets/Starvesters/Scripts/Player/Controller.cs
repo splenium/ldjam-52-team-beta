@@ -7,24 +7,27 @@ public class Controller : MonoBehaviour
     /// <summary>
     /// Rotation speed when using a controller.
     /// </summary>
-    public float m_LookSpeedController = 120f;
+    public float LookSpeedControl = 120f;
     /// <summary>
     /// Rotation speed when using the mouse.
     /// </summary>
-    public float m_LookSpeedMouse = 4.0f;
+    public float LookSpeedMouse = 4.0f;
     /// <summary>
     /// Movement speed.
     /// </summary>
-    public float m_MoveSpeed = 10.0f;
+    public float MoveSpeed = 20000;
     /// <summary>
     /// Value added to the speed when incrementing.
     /// </summary>
-    public float m_MoveSpeedIncrement = 2.5f;
+    public float MoveSpeedIncrement = 2.5f;
     /// <summary>
     /// Scale factor of the turbo mode.
     /// </summary>
     public float m_Turbo = 10.0f;
     public bool mouseFreedom = false;
+    public Rigidbody Body;
+    public float DecaySpeed = 0.03f;
+    public float minimumSpeed = 5.07f;
 
 
     private static string kMouseX = "Mouse X";
@@ -72,12 +75,12 @@ public class Controller : MonoBehaviour
         if (!mouseFreedom)
         {
             leftShiftBoost = true;
-            inputRotateAxisX = Input.GetAxis(kMouseX) * m_LookSpeedMouse;
-            inputRotateAxisY = Input.GetAxis(kMouseY) * m_LookSpeedMouse;
+            inputRotateAxisX = Input.GetAxis(kMouseX) * LookSpeedMouse;
+            inputRotateAxisY = Input.GetAxis(kMouseY) * LookSpeedMouse;
         }
 
         leftShift = Input.GetKey(KeyCode.LeftShift);
-        fire1 = Input.GetAxis("Fire1") > 0.0f;
+        //fire1 = Input.GetAxis("Fire1") > 0.0f;
 
         inputVertical = Input.GetAxis(kVertical);
         inputHorizontal = Input.GetAxis(kHorizontal);
@@ -94,8 +97,8 @@ public class Controller : MonoBehaviour
 
         if (inputChangeSpeed != 0.0f)
         {
-            m_MoveSpeed += inputChangeSpeed * m_MoveSpeedIncrement;
-            if (m_MoveSpeed < m_MoveSpeedIncrement) m_MoveSpeed = m_MoveSpeedIncrement;
+            MoveSpeed += inputChangeSpeed * MoveSpeedIncrement;
+            if (MoveSpeed < MoveSpeedIncrement) MoveSpeed = MoveSpeedIncrement;
         }
 
         bool moved = inputRotateAxisX != 0.0f || inputRotateAxisY != 0.0f || inputVertical != 0.0f || inputHorizontal != 0.0f;
@@ -110,14 +113,26 @@ public class Controller : MonoBehaviour
             if (rotationX >= 270.0f)
                 newRotationX = Mathf.Clamp(newRotationX, 270.0f, 360.0f);
 
-            transform.localRotation = Quaternion.Euler(newRotationX, newRotationY, transform.localEulerAngles.z);
+            //transform.localRotation = Quaternion.Euler(newRotationX, newRotationY, transform.localEulerAngles.z);
+            Body.MoveRotation(Quaternion.Euler(newRotationX, newRotationY, transform.localEulerAngles.z));
 
             // Speed adjust
-            float moveSpeed = Time.deltaTime * m_MoveSpeed;
-            if (fire1 || leftShiftBoost && leftShift)
+            float moveSpeed = Time.deltaTime * MoveSpeed;
+            if (leftShiftBoost && leftShift)
                 moveSpeed *= m_Turbo;
-            transform.position += transform.forward * moveSpeed * inputVertical;
-            transform.position += transform.right * moveSpeed * inputHorizontal;
+            //transform.position += transform.forward * moveSpeed * inputVertical;
+            //transform.position += transform.right * moveSpeed * inputHorizontal;
+
+            Vector3 applyForce = new Vector3(moveSpeed * inputHorizontal * Time.deltaTime, 0, moveSpeed * inputVertical * Time.deltaTime);
+
+
+            // Apply forces
+            if(applyForce.magnitude < 0.1)
+            {
+                //Body.vety = Vector3.Lerp(Body.velocity, Body.velocity.normalized * minimumSpeed, Time.deltaTime / DecaySpeed);
+                Body.AddForce(-this.gameObject.transform.forward * DecaySpeed);
+            }
+            Body.AddRelativeForce(applyForce);
         }
     }
 }
