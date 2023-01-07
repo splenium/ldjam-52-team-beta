@@ -6,7 +6,6 @@ public class PlanetEditor : Editor
 {
     Planet planet;
     Editor shapeEditor;
-    Editor colourEditor;
 
     public override void OnInspectorGUI()
     {
