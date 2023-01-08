@@ -10314,11 +10314,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0ccd436488ce14b83f356ebb405a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AccelerationFactor: 20
+  AccelerationFactor: 100
   MouseLock: 0
   LookSpeedMouse: 0.1
   DirectionSmooth: 1
   PitchSpeed: -0.1
+  Decay: 4
+  MinimumSpeed: 10
+  BoostFactor: 10
   Avatar: {fileID: 3002463317795710423}
   ZeroIsEvil: 1
 --- !u!54 &643361000318229415
