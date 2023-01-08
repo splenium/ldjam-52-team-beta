@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 534434830}
   - component: {fileID: 534434832}
   - component: {fileID: 534434831}
+  - component: {fileID: 534434833}
   m_Layer: 0
   m_Name: Sun
   m_TagString: Untagged
@@ -457,6 +458,20 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &534434833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534434829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc6bf9e723006c43bb6cbee21d7c228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Visible: 0
+  AtmoshpereMat: {fileID: 2100000, guid: a867686b225c1f847b860be83a934717, type: 2}
 --- !u!1 &680465209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,6 +1023,7 @@ GameObject:
   - component: {fileID: 1532447640}
   - component: {fileID: 1532447639}
   - component: {fileID: 1532447642}
+  - component: {fileID: 1532447643}
   m_Layer: 0
   m_Name: SunRender
   m_TagString: Untagged
@@ -1092,8 +1108,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b9802c835070541a723175aab32475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SunColor: {r: 0.9528302, g: 0.82667404, b: 0.03146139, a: 0}
+  SunColor: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 0}
   LightSource: {fileID: 534434832}
+--- !u!114 &1532447643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532447638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00893cb4c748544b80549dec486093a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handleSun: {fileID: 1532447642}
+  _timeChangeCooldown: 1
 --- !u!1 &1620473298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,7 +1274,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 99e80529a4c66444f80ec7aa22296fbf, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 17d202500b4875c49ae5722a7a29bdd0, type: 2}
 --- !u!4 &1694557760
 Transform:
   m_ObjectHideFlags: 0
