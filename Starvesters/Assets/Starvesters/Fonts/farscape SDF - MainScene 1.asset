@@ -58,11 +58,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: farscape SDF
+  m_Name: farscape SDF - MainScene 1
   m_EditorClassIdentifier: 
-  hashCode: -156366144
+  hashCode: 60426633
   material: {fileID: 563488704686893094}
-  materialHashCode: 1952410336
+  materialHashCode: -1024939383
   m_Version: 1.1.0
   m_SourceFontFileGUID: ba777d52d6f5635428c4650210e4e7ba
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: ba777d52d6f5635428c4650210e4e7ba,
@@ -2599,7 +2599,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - BEVEL_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

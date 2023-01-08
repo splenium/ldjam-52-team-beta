@@ -7,7 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI _teshMeshPro;
     public float _remainingTime;
+    public Color _actualSunColor;
+    public HandleSun _handleSun;
 
+    private List<GameObject> LightHarvest { get; set; }
     public static GameManager Instance { get; private set; }
     
     public delegate void TimerFinish();
@@ -29,7 +32,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+    public void Start()
+    {
+        LightHarvest = new List<GameObject>();
+        _handleSun.SunColor = _actualSunColor;
+    }
     // TODO :
     // - Création d'evènement pour : ajouter du temps
     // - Enlever de la luminosité au fur et a mesure du temps
@@ -57,6 +64,19 @@ public class GameManager : MonoBehaviour
                 TimerFinishEvent?.Invoke();
             }
         }
+    }
+
+    public void AddLightHarvest(GameObject light)
+    {
+        // On ajoute notre lumière à notre personnage
+        LightHarvest.Add(light);
+
+        // On change la couleur de notre soleil
+        Color gameObjectColor = new Color();
+        _actualSunColor += gameObjectColor;
+        _handleSun.SunColor = _actualSunColor;
+
+        // On icrémente le compter de lumière
     }
 }
 
