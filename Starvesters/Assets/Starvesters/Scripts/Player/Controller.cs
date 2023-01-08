@@ -28,6 +28,7 @@ public class Controller : MonoBehaviour
     private Vector2 _lastMousePosition;
     public float DirectionSmooth;
     public float PitchSpeed;
+    public float Decay = 1f;
     public HandleAvatar Avatar;
     public bool ZeroIsEvil = true;
 
@@ -52,7 +53,7 @@ public class Controller : MonoBehaviour
 
         float pitch = (Input.GetKey(KeyCode.A) ? 1.0f : 0.0f) + (Input.GetKey(KeyCode.E) ? -1.0f : 0.0f);
         //transform.localRotation = Quaternion.Euler(newRotationX, newRotationY, transform.localEulerAngles.z);
-        var newQuat = Quaternion.Euler(newRotationX, newRotationY, transform.localEulerAngles.z+ pitch*4.9f);
+        //var newQuat = Quaternion.Euler(newRotationX, newRotationY, transform.localEulerAngles.z+ pitch*4.9f);
 
         var right = this.gameObject.transform.right * deltaMousePos.x * LookSpeedMouse;
         var up = this.gameObject.transform.up * deltaMousePos.y * LookSpeedMouse;
@@ -63,6 +64,10 @@ public class Controller : MonoBehaviour
 
         if(ZeroIsEvil) rigidBody.AddForce(this.gameObject.transform.position.normalized*(1.0f-Mathf.Clamp01(this.gameObject.transform.position.magnitude/300.0f))*100.0f);
         rigidBody.AddForce(forwardAcceleration);
+        if(forwardAcceleration.magnitude < 0.1f)
+        {
+            rigidBody.AddForce(Vector3.back * rigidBody.velocity.magnitude * Decay);
+        }
         rigidBody.velocity = Vector3.Lerp(rigidBody.velocity, this.gameObject.transform.forward * rigidBody.velocity.magnitude, DirectionSmooth * Time.fixedDeltaTime);
         _lastMousePosition = curMousePos;
     }
