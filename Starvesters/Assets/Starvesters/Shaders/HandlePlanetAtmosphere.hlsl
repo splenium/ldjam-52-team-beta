@@ -91,12 +91,17 @@ void HandlePlanetAtmosphere_hlsl_float(float2 uv, float3 inputCol, float depth, 
 
 		// inputCol += float3(.2,0.,0.);
 		float2 hit = RaySphereIntersection(planetPos, planetSize, worldSpaceCameraPos, viewDir);
-
+		float3 hitPos = worldSpaceCameraPos + hit.x * viewDir;
 		float dstToAtmos = hit.x;
 		float dstThroughAtmos = min(hit.y, depth - dstToAtmos);
 		float factor = (dstThroughAtmos / (planetSize * 2.0));
 		factor = pow(sat(factor), 2.0);
-		col = lerp(inputCol, (viewDir*.5+.5),factor);
+		float oklerp = 1. - sat(dot(normalize(hitPos - planetPos), normalize(planetPos)));
+
+		planetColA *= sat((length(hitPos + normalize(planetPos) * .5) - planetSize * .5) * 10.);
+		float oklerp2 = sat(dot(viewDir, normalize(hitPos - planetPos)));
+		float3 rgb = lerp(planetColA, planetColB, oklerp);
+		col = lerp(inputCol, rgb,factor);
 	}
 		
 //		col = inputCol;
