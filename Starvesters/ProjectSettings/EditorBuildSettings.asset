@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Starvesters/Scenes/Sebastien.unity
     guid: f368087b220838a4788737029d62a8ad
+  - enabled: 1
+    path: Assets/Starvesters/Scenes/MainMenu.unity
+    guid: 25d29e8fb01a9a44ca6bd487cbc3575d
+  - enabled: 1
+    path: Assets/Starvesters/Scenes/MainScene.unity
+    guid: 85c9faef92461614aa0f504874d5821f
   m_configObjects: {}
