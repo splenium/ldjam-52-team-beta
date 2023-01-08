@@ -30,6 +30,8 @@ public class Controller : MonoBehaviour
     public float DirectionSmooth;
     public float PitchSpeed;
     public HandleAvatar Avatar;
+    public bool ZeroIsEvil = true;
+
     void Update()
     {
         var rigidBody = this.gameObject.GetComponent<Rigidbody>();
@@ -53,8 +55,6 @@ public class Controller : MonoBehaviour
         //transform.localRotation = Quaternion.Euler(newRotationX, newRotationY, transform.localEulerAngles.z);
         var newQuat = Quaternion.Euler(newRotationX, newRotationY, transform.localEulerAngles.z+ pitch*4.9f);
 
-        Debug.Log(" " + deltaMousePos.x);
-
         var right = this.gameObject.transform.right * deltaMousePos.x * LookSpeedMouse;
         var up = this.gameObject.transform.up * deltaMousePos.y * LookSpeedMouse;
         var quat = Quaternion.LookRotation(this.gameObject.transform.forward + right + up, this.gameObject.transform.up + this.gameObject.transform.right*LookSpeedMouse * pitch* PitchSpeed);
@@ -62,14 +62,9 @@ public class Controller : MonoBehaviour
         rigidBody.maxAngularVelocity = 0.0f;
         //rigidBody.MoveRotation(quat);
 
-        rigidBody.AddForce(this.gameObject.transform.position.normalized*(1.0f-Mathf.Clamp01(this.gameObject.transform.position.magnitude/300.0f))*100.0f);
+        if(ZeroIsEvil) rigidBody.AddForce(this.gameObject.transform.position.normalized*(1.0f-Mathf.Clamp01(this.gameObject.transform.position.magnitude/300.0f))*100.0f);
         rigidBody.AddForce(forwardAcceleration);
         rigidBody.velocity = Vector3.Lerp(rigidBody.velocity, this.gameObject.transform.forward * rigidBody.velocity.magnitude, DirectionSmooth * Time.fixedDeltaTime);
         _lastMousePosition = curMousePos;
-    }
-
-    private void OnDrawGizmos()
-    {
-        //Gizmos.DrawLine(this.gameObject.transform.position, this.gameObject.transform.position + this.gameObject.transform.forward*5.0f);
     }
 }
