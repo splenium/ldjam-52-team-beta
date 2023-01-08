@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public TextMeshProUGUI _teshMeshPro;
+    // public TextMeshProUGUI _teshMeshPro;
     public float _remainingTime;
     public Color _actualSunColor;
     public HandleSun _handleSun;
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
             if (_remainingTime > 0)
             {
                 _remainingTime -= Time.deltaTime;
-                _teshMeshPro.text = TimeSpan.FromSeconds((double)_remainingTime).ToString(@"mm\:ss");
+                // _teshMeshPro.text = TimeSpan.FromSeconds((double)_remainingTime).ToString(@"mm\:ss");
             }
             else
             {
