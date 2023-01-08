@@ -1,4 +1,5 @@
 using System;
+using System.Net.Sockets;
 using UnityEngine;
 
 public class Planet : MonoBehaviour
@@ -61,6 +62,26 @@ public class Planet : MonoBehaviour
     {
         Initialize();
         GenerateMesh();
+    }
+
+    // Should only used in editor mode
+    public void ResetInstance()
+    {
+        for (int i = this.transform.childCount; i > 0; --i)
+        {
+            DestroyImmediate(this.transform.GetChild(0).gameObject);
+        }
+        meshFilters = null;
+        meshColliders = null;
+    }
+
+    // Should only used in editor mode
+    public void FixChildPosition()
+    {
+        foreach(Transform child in transform)
+        {
+            child.localPosition = Vector3.zero;
+        }
     }
 
     public void OnShapeSettingsUpdated()

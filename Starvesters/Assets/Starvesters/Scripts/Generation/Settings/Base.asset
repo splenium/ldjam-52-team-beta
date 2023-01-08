@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27d30c4684909994db2202124d63f42b, type: 3}
-  m_Name: Shape
+  m_Name: Base
   m_EditorClassIdentifier: 
-  planetSize: 1
+  planetSize: 2000
   noiseLayers:
   - enabled: 1
     useFirstLayerAsMask: 0
@@ -53,27 +53,6 @@ MonoBehaviour:
         numLayers: 4
         baseRoughness: 3.02
         persistence: 1.11
-        center: {x: 0, y: 0, z: 0}
-        minValue: 1.5
-        weightMultiplier: 0.72
-  - enabled: 0
-    useFirstLayerAsMask: 0
-    noiseSettings:
-      filterType: 0
-      simpleNoiseSettings:
-        strength: 0
-        roughness: 0
-        numLayers: 0
-        baseRoughness: 0
-        persistence: 0
-        center: {x: 0, y: 0, z: 0}
-        minValue: 0
-      rigidNoiseSettings:
-        strength: 0.13
-        roughness: 1.08
-        numLayers: 4
-        baseRoughness: 3.02
-        persistence: 1.01
         center: {x: 0, y: 0, z: 0}
         minValue: 1.5
         weightMultiplier: 0.72

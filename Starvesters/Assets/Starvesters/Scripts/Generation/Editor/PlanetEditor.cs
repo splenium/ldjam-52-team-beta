@@ -20,7 +20,9 @@ public class PlanetEditor : Editor
 
         if(GUILayout.Button("Generate Planet"))
         {
+            planet.ResetInstance();
             planet.GeneratePlanet();
+            planet.FixChildPosition();
         }
         DrawSettingsEditor(planet.shapeSettings, planet.OnShapeSettingsUpdated, ref planet.shapeSettingsFoldout, ref shapeEditor);
     }
