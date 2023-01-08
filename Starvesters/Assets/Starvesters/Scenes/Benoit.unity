@@ -4461,11 +4461,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _winningTime: 180
-  _remainingTime: 60
+  _remainingTime: 2
   _addingTime: 15
   _actualSunColor: {r: 0.5660378, g: 0.54734784, b: 0.54734784, a: 0}
   _handleSun: {fileID: 2028205932}
-  _canvas: {fileID: 1985260025}
+  _menu: {fileID: 1985260025}
+  _teshMeshProInformationMessage: {fileID: 1716760818}
   _uiMaterial: {fileID: 2100000, guid: 23fa5dbff204db344916864fc23fa360, type: 2}
 --- !u!4 &1144203125
 Transform:
