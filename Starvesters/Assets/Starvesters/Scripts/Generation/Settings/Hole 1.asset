@@ -12,29 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d30c4684909994db2202124d63f42b, type: 3}
   m_Name: Hole 1
   m_EditorClassIdentifier: 
-  planetSize: 2000
+  planetSize: 1050
   noiseLayers:
-  - enabled: 0
-    useFirstLayerAsMask: 0
-    noiseSettings:
-      filterType: 0
-      simpleNoiseSettings:
-        strength: 0.16
-        roughness: 0.76
-        numLayers: 9
-        baseRoughness: 1.31
-        persistence: 1
-        center: {x: -12.68, y: 0, z: 0}
-        minValue: 2.9
-      rigidNoiseSettings:
-        strength: 1.05
-        roughness: 9.75
-        numLayers: 4
-        baseRoughness: 2.03
-        persistence: 5.59
-        center: {x: 5.78, y: 0, z: 0}
-        minValue: 0.58
-        weightMultiplier: 0
   - enabled: 1
     useFirstLayerAsMask: 0
     noiseSettings:
@@ -48,11 +27,11 @@ MonoBehaviour:
         center: {x: -9.96, y: 0, z: 0}
         minValue: 2.9
       rigidNoiseSettings:
-        strength: -2.31
-        roughness: 5.39
-        numLayers: 4
-        baseRoughness: 1.44
+        strength: -0.57
+        roughness: 4.85
+        numLayers: 1
+        baseRoughness: 1.18
         persistence: 5.27
-        center: {x: 0.85, y: 0, z: 0}
-        minValue: 0.58
+        center: {x: 3.23, y: 0, z: 0}
+        minValue: 0.6
         weightMultiplier: 0
