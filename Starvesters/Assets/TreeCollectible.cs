@@ -9,6 +9,8 @@ public class TreeCollectible : MonoBehaviour
     public Material Ready;
     public Material UnReady;
     public Color Color;
+    public float _timeGain;
+
     public Transform ParentSeeds;
     public AudioSource Audio;
 

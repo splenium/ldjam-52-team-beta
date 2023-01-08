@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     public enum GameStateEnum { Introduction, Played, Ended }
     public List<GameObject> _playedGameObjects;
     public List<GameObject> _introductionGameObjects;
-    public List<GameObject> _endGameObects;
 
     public GameStateEnum _gameState;
     public GameObject _playerElements;
@@ -21,7 +20,6 @@ public class GameManager : MonoBehaviour
 
     public float _winningTime;
     public float _remainingTime;
-    public float _addingTime;
 
     public Color _actualSunColor;
     public HandleSun _handleSun;
@@ -39,7 +37,6 @@ public class GameManager : MonoBehaviour
     public delegate void TimerFinish();
     public event TimerFinish TimerFinishEvent;
 
-    private bool StartingGame { get; set; }
     private bool TimerIsRunning { get; set; } = true;
 
     public ShowHideAtmospheres _showHideAtmospheres;
@@ -62,10 +59,9 @@ public class GameManager : MonoBehaviour
     {
         LightHarvest = new List<GameObject>();
         Time.timeScale = 1f;
-        _gameState = GameStateEnum.Introduction;
+
         _handleSun.SunColor = _actualSunColor;
         _uiMaterial.SetColor("_ColorSun", _actualSunColor);
-        StartingGame = true;
 
         PlayedActived(false);
 
@@ -150,7 +146,7 @@ public class GameManager : MonoBehaviour
         _uiMaterial.SetColor("_ColorSun", _actualSunColor);
 
         // On icrément le temps restant
-        _remainingTime += _addingTime;
+        _remainingTime += light.GetComponent<TreeCollectible>()._timeGain;
     }
 
     public void PlayedActived(bool active)
