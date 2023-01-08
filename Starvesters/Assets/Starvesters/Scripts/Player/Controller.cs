@@ -4,6 +4,7 @@ using UnityEngine.Rendering;
 public class Controller : MonoBehaviour
 {
     public float AccelerationFactor;
+    public float PlanetAccelerationFactor;
     public bool MouseLock;
     public float LookSpeedMouse;
 
@@ -33,6 +34,23 @@ public class Controller : MonoBehaviour
     public float BoostFactor = 3f;
     public HandleAvatar Avatar;
     public bool ZeroIsEvil = true;
+    public GameObject[] Planets;
+
+    GameObject getNearestPlanet()
+    {
+        GameObject nearest = Planets[0];
+        float distance = Vector3.Distance(nearest.transform.position, transform.position);
+        foreach(var planet in Planets)
+        {
+            float curDistance = Vector3.Distance(planet.transform.position, transform.position);
+            if(curDistance < distance)
+            {
+                distance= curDistance;
+                nearest = planet;
+            }
+        }
+        return nearest;
+    }
 
     void Update()
     {
@@ -57,6 +75,11 @@ public class Controller : MonoBehaviour
         {
             boostFactor = BoostFactor;
         }
+
+        var nearestPlanet = getNearestPlanet();
+        float planetDistance = Vector3.Distance(nearestPlanet.transform.position, transform.position);
+        float planetSize = nearestPlanet.GetComponent<Planet>().shapeSettings.planetSize*2.5f;
+        float acceleration = Mathf.Lerp(AccelerationFactor, PlanetAccelerationFactor, 1.0f- Mathf.Clamp01(planetDistance / planetSize));
 
         var rigidBody = this.gameObject.GetComponent<Rigidbody>();
         var forwardAcceleration = this.gameObject.transform.forward * AccelerationFactor * boostFactor * Input.GetAxis("Vertical");
