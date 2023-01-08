@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     public event TimerFinish TimerFinishEvent;
 
     private bool TimerIsRunning { get; set; } = true;
+
+    public ShowHideAtmospheres _showHideAtmospheres;
     
     private void Awake()
     {
@@ -70,6 +72,8 @@ public class GameManager : MonoBehaviour
                 _camera.SetActive(true);
                 _playerElements.SetActive(false);
 
+                _showHideAtmospheres.Visible = false;
+
                 Time.timeScale = 0f;
             }
             else if (_remainingTime > 0)
@@ -89,7 +93,7 @@ public class GameManager : MonoBehaviour
 
                 _camera.SetActive(true);
                 _playerElements.SetActive(false);
-
+                _showHideAtmospheres.Visible = false;
                 Time.timeScale = 0f;
             }
         }
