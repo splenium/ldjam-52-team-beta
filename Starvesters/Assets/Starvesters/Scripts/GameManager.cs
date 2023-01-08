@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // public TextMeshProUGUI _teshMeshPro;
+    // 
     public float _winningTime;
     public float _remainingTime;
     public float _addingTime;
@@ -14,7 +14,11 @@ public class GameManager : MonoBehaviour
     public Color _actualSunColor;
     public HandleSun _handleSun;
         
-    public Canvas _canvas;
+    public Canvas _menu;
+    public TextMeshProUGUI _teshMeshProInformationMessage;
+    private const string _winningMessage = "Well played , you've won";
+    private const string _losingMessage = "Nice try, but you lose";
+
     public Material _uiMaterial;
 
     private List<GameObject> LightHarvest { get; set; }
@@ -42,7 +46,7 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         LightHarvest = new List<GameObject>();
-
+        Time.timeScale = 1f;
         _handleSun.SunColor = _actualSunColor;
         _uiMaterial.SetColor("_ColorSun", _actualSunColor);
     }
@@ -60,7 +64,8 @@ public class GameManager : MonoBehaviour
         {
             if (_remainingTime >= _winningTime)
             {
-                // TODO : Faire gagner le joueur
+                _teshMeshProInformationMessage.text = _winningMessage;
+                _menu.gameObject.SetActive(true);
             }
             else if (_remainingTime > 0)
             {
@@ -74,7 +79,8 @@ public class GameManager : MonoBehaviour
                 TimerFinishEvent?.Invoke();
 
                 // Restart canvas appear
-                _canvas.gameObject.SetActive(true);
+                _teshMeshProInformationMessage.text = _losingMessage;
+                _menu.gameObject.SetActive(true);
                 Time.timeScale = 0f;
             }
         }
