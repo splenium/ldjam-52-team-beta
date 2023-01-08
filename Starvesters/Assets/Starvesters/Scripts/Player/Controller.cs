@@ -29,10 +29,12 @@ public class Controller : MonoBehaviour
     private Vector2 _lastMousePosition;
     public float DirectionSmooth;
     public float PitchSpeed;
+    public HandleAvatar Avatar;
     void Update()
     {
+        var rigidBody = this.gameObject.GetComponent<Rigidbody>();
         var forwardAcceleration = this.gameObject.transform.forward * AccelerationFactor*Input.GetAxis("Vertical");
-
+        Avatar.Acceleration = Input.GetAxis("Vertical") * Mathf.Clamp01(rigidBody.velocity.magnitude / 50.0f);
 
         float rotationX = transform.localEulerAngles.x;
         var curMousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -47,7 +49,6 @@ public class Controller : MonoBehaviour
         if (rotationX >= 270.0f)
             newRotationX = Mathf.Clamp(newRotationX, 270.0f, 360.0f);
 
-        var rigidBody = this.gameObject.GetComponent<Rigidbody>();
         float pitch = (Input.GetKey(KeyCode.A) ? 1.0f : 0.0f) + (Input.GetKey(KeyCode.E) ? -1.0f : 0.0f);
         //transform.localRotation = Quaternion.Euler(newRotationX, newRotationY, transform.localEulerAngles.z);
         var newQuat = Quaternion.Euler(newRotationX, newRotationY, transform.localEulerAngles.z+ pitch*4.9f);

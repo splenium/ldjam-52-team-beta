@@ -739,8 +739,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789397879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.72, y: -0.03264284, z: -2.92}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 142.4, y: -0.03264284, z: -2.92}
+  m_LocalScale: {x: 9.9802, y: 9.9802, z: 9.9802}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1206,7 +1206,7 @@ Transform:
   m_GameObject: {fileID: 1454374531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10.018145, y: 10.018145, z: 10.018145}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1706,7 +1706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1624820923
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2281,15 +2281,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AtmosphereMaterial: {fileID: 2100000, guid: a867686b225c1f847b860be83a934717, type: 2}
   PlanetA: {fileID: 1702846742}
-  PlanetASize: 2
+  PlanetASize: 20
   PlanetAColorA: {r: 0.3800627, g: 1, b: 0, a: 0}
   PlanetAColorB: {r: 1, g: 0.6698078, b: 0, a: 0}
   PlanetB: {fileID: 789397879}
-  PlanetBSize: 2
+  PlanetBSize: 20
   PlanetBColorA: {r: 1, g: 0, b: 0.7325125, a: 0}
   PlanetBColorB: {r: 0.5849056, g: 0.124154516, b: 0.124154516, a: 0}
   PlanetC: {fileID: 2097607543}
-  PlanetCSize: 2
+  PlanetCSize: 20
   PlanetCColorA: {r: 1, g: 0, b: 0, a: 0}
   PlanetCColorB: {r: 0, g: 0.4848323, b: 1, a: 0}
 --- !u!114 &1702846744
@@ -2308,7 +2308,6 @@ MonoBehaviour:
   autoUpdate: 1
   faceRenderMask: 0
   shapeSettings: {fileID: 11400000, guid: 6b77c224f575a384db8f3ae896c6db4a, type: 2}
-  planetColour: {r: 0, g: 0, b: 0, a: 0}
   material: {fileID: 2100000, guid: c773a3503c4c3b044bfe71dbfe94ffa9, type: 2}
   shapeSettingsFoldout: 1
   meshFilters:
@@ -2327,8 +2326,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702846742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 0, z: -6.7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -8.1461, y: -0.010666, z: -55.46}
+  m_LocalScale: {x: 6.9879274, y: 6.9879274, z: 6.9879274}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1295046560}
@@ -2686,8 +2685,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097607543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.26, y: -0.03264284, z: 19.83}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 365.2, y: -0.03264284, z: 135.7}
+  m_LocalScale: {x: 8.8577, y: 8.8577, z: 8.8577}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
