@@ -18,7 +18,6 @@ public class TreeCollectible : MonoBehaviour
     {
         if (other.gameObject.name == "Player" && _isReady)
         {
-            // TODO call collect beuhbeuh
             GameManager.Instance.LightIsHarvest(this.gameObject);
 
             // TODO particle + sound

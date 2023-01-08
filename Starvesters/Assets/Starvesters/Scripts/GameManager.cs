@@ -6,7 +6,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // 
+    public GameObject _playerElements;
+    public GameObject _camera;
+
     public float _winningTime;
     public float _remainingTime;
     public float _addingTime;
@@ -50,8 +52,6 @@ public class GameManager : MonoBehaviour
         _handleSun.SunColor = _actualSunColor;
         _uiMaterial.SetColor("_ColorSun", _actualSunColor);
     }
-    // TODO :
-    // - Enlever de la luminosité au fur et a mesure du temps
 
     void FixedUpdate()
     {
@@ -66,6 +66,11 @@ public class GameManager : MonoBehaviour
             {
                 _teshMeshProInformationMessage.text = _winningMessage;
                 _menu.gameObject.SetActive(true);
+
+                _camera.SetActive(true);
+                _playerElements.SetActive(false);
+
+                Time.timeScale = 0f;
             }
             else if (_remainingTime > 0)
             {
@@ -81,6 +86,10 @@ public class GameManager : MonoBehaviour
                 // Restart canvas appear
                 _teshMeshProInformationMessage.text = _losingMessage;
                 _menu.gameObject.SetActive(true);
+
+                _camera.SetActive(true);
+                _playerElements.SetActive(false);
+
                 Time.timeScale = 0f;
             }
         }
