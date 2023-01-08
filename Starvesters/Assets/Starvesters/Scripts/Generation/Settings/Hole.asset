@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d30c4684909994db2202124d63f42b, type: 3}
+  m_Name: Hole
+  m_EditorClassIdentifier: 
+  planetSize: 2000
+  noiseLayers:
+  - enabled: 0
+    useFirstLayerAsMask: 0
+    noiseSettings:
+      filterType: 0
+      simpleNoiseSettings:
+        strength: 0.05
+        roughness: 0.66
+        numLayers: 6
+        baseRoughness: 3.88
+        persistence: 1
+        center: {x: -9.96, y: 0, z: 0}
+        minValue: 2.9
+      rigidNoiseSettings:
+        strength: 0
+        roughness: 0
+        numLayers: 0
+        baseRoughness: 0
+        persistence: 0
+        center: {x: 0, y: 0, z: 0}
+        minValue: 0
+        weightMultiplier: 0
+  - enabled: 1
+    useFirstLayerAsMask: 1
+    noiseSettings:
+      filterType: 1
+      simpleNoiseSettings:
+        strength: 0
+        roughness: 0
+        numLayers: 0
+        baseRoughness: 0
+        persistence: 0
+        center: {x: 0, y: 0, z: 0}
+        minValue: 0
+      rigidNoiseSettings:
+        strength: -2.56
+        roughness: 5.24
+        numLayers: 3
+        baseRoughness: 5
+        persistence: -1.48
+        center: {x: 0, y: 0, z: 0}
+        minValue: -1.95
+        weightMultiplier: -2.08

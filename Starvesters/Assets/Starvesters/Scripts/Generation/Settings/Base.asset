@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetSize: 2000
   noiseLayers:
-  - enabled: 1
+  - enabled: 0
     useFirstLayerAsMask: 0
     noiseSettings:
       filterType: 0
       simpleNoiseSettings:
-        strength: 0.12
-        roughness: 0.5
-        numLayers: 4
-        baseRoughness: 4.6
+        strength: 0.05
+        roughness: 0.66
+        numLayers: 6
+        baseRoughness: 3.88
         persistence: 1
-        center: {x: 11.29, y: -0.78, z: 2.47}
-        minValue: 1
+        center: {x: -9.96, y: 0, z: 0}
+        minValue: 2.9
       rigidNoiseSettings:
         strength: 0
         roughness: 0
@@ -35,10 +35,10 @@ MonoBehaviour:
         center: {x: 0, y: 0, z: 0}
         minValue: 0
         weightMultiplier: 0
-  - enabled: 0
-    useFirstLayerAsMask: 0
+  - enabled: 1
+    useFirstLayerAsMask: 1
     noiseSettings:
-      filterType: 0
+      filterType: 1
       simpleNoiseSettings:
         strength: 0
         roughness: 0
@@ -48,11 +48,11 @@ MonoBehaviour:
         center: {x: 0, y: 0, z: 0}
         minValue: 0
       rigidNoiseSettings:
-        strength: 0.1
-        roughness: 0.85
-        numLayers: 4
-        baseRoughness: 3.02
-        persistence: 1.11
+        strength: -2.56
+        roughness: 5.24
+        numLayers: 3
+        baseRoughness: 5
+        persistence: -1.48
         center: {x: 0, y: 0, z: 0}
-        minValue: 1.5
-        weightMultiplier: 0.72
+        minValue: -1.95
+        weightMultiplier: -2.08
