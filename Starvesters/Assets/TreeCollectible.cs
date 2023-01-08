@@ -43,6 +43,12 @@ public class TreeCollectible : MonoBehaviour
             t.gameObject.GetComponent<MeshRenderer>().material = mat;
         }
     }
+
+    void ColorChildSeed()
+    {
+        foreach (var seed in ParentSeeds) { }
+
+    }
     private void Start()
     {
         _isReady = true;
