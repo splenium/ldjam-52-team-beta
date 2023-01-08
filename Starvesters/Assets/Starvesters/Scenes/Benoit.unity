@@ -3633,7 +3633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &898329478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4405,7 +4405,8 @@ MonoBehaviour:
   _actualSunColor: {r: 0, g: 0, b: 0, a: 0}
   _handleSun: {fileID: 0}
   _addingTime: 0
-  _canvas: {fileID: 0}
+  _canvas: {fileID: 898329480}
+  _gameIsRunning: 0
 --- !u!4 &1144203125
 Transform:
   m_ObjectHideFlags: 0
