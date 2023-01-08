@@ -1,5 +1,9 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal.Internal;
+using static UnityEngine.UI.Image;
 
 public class Controller : MonoBehaviour
 {
@@ -17,6 +21,54 @@ public class Controller : MonoBehaviour
     public bool ZeroIsEvil = true;
     public GameObject[] Planets;
 
+    private KeyMap KeyboardLayout;
+    private KeyMap qwerty;
+    private KeyMap azerty;
+    public bool isQwerty = true;
+    private enum Axes { Horizontal, Vertical };
+    class KeyMap
+    {
+        public KeyCode boost;
+        public KeyCode forward;
+        public KeyCode backward;
+        public KeyCode pitchPositive;
+        public KeyCode pitchNegative;
+
+        public KeyMap(KeyCode boost, KeyCode forward, KeyCode backward, KeyCode pitchPositive, KeyCode pitchNegative)
+        {
+            this.boost = boost;
+            this.forward = forward;
+            this.backward = backward;
+            this.pitchPositive = pitchPositive;
+            this.pitchNegative = pitchNegative;
+        }
+    }
+
+    void Start()
+    {
+        qwerty = new KeyMap(KeyCode.LeftShift, KeyCode.W, KeyCode.S, KeyCode.D, KeyCode.A);
+        azerty = new KeyMap(KeyCode.LeftShift, KeyCode.Z, KeyCode.S, KeyCode.Q, KeyCode.D);
+        SetKeyboardLayout();
+    }
+
+    void SetKeyboardLayout()
+    {
+        KeyboardLayout = isQwerty ? qwerty : azerty;
+    }
+
+    float GetAxis(Axes axe)
+    {
+        switch (axe)
+        {
+            case Axes.Vertical:
+                return (Input.GetKey(KeyboardLayout.forward) ? 1f : 0f) + (Input.GetKey(KeyboardLayout.backward) ? -1f : 0f);
+            case Axes.Horizontal:
+                return (Input.GetKey(KeyboardLayout.pitchPositive) ? 1f : 0f) + (Input.GetKey(KeyboardLayout.pitchNegative) ? -1f : 0f);
+            default:
+                throw new ArgumentException("Parameter value incorrect", nameof(axe));
+        }
+    }
+
     GameObject getNearestPlanet()
     {
         GameObject nearest = Planets[0];
@@ -32,6 +84,8 @@ public class Controller : MonoBehaviour
         }
         return nearest;
     }
+
+
 
     void Update()
     {
@@ -50,9 +104,15 @@ public class Controller : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyUp("k"))
+        {
+            isQwerty = !isQwerty;
+            SetKeyboardLayout();
+        }
+
         float boostFactor = 1f;
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if (Input.GetKey(KeyboardLayout.boost))
         {
             boostFactor = BoostFactor;
         }
@@ -63,8 +123,8 @@ public class Controller : MonoBehaviour
         float acceleration = Mathf.Lerp(AccelerationFactor, PlanetAccelerationFactor, 1.0f- Mathf.Clamp01(planetDistance / planetSize));
 
         var rigidBody = this.gameObject.GetComponent<Rigidbody>();
-        var forwardAcceleration = this.gameObject.transform.forward * acceleration * boostFactor * Input.GetAxis("Vertical");
-        Avatar.Acceleration = Input.GetAxis("Vertical") * Mathf.Clamp01(rigidBody.velocity.magnitude / 50.0f);
+        var forwardAcceleration = this.gameObject.transform.forward * acceleration * boostFactor * GetAxis(Axes.Vertical);
+        Avatar.Acceleration = GetAxis(Axes.Vertical) * Mathf.Clamp01(rigidBody.velocity.magnitude / 50.0f);
 
         Vector2 deltaMousePos;
         if (!MouseLock)
@@ -75,7 +135,7 @@ public class Controller : MonoBehaviour
             deltaMousePos = Vector2.zero;
         }
 
-        float pitch = Input.GetAxis("Horizontal");
+        float pitch = GetAxis(Axes.Horizontal);
 
         var right = this.gameObject.transform.right * deltaMousePos.x * LookSpeedMouse;
         var up = this.gameObject.transform.up * deltaMousePos.y * LookSpeedMouse;
