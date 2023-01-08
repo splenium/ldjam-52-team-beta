@@ -1,19 +1,20 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public TextMeshProUGUI _teshMeshPro;
+    public float _remainingTime;
+
     public static GameManager Instance { get; private set; }
     
     public delegate void TimerFinish();
     public event TimerFinish TimerFinishEvent;
 
-    public float _remainingTime = 1;
-
-    List<object> lightHardvest = new List<object> { };
-
     private bool TimerIsRunning { get; set; } = true;
+    
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
             if (_remainingTime > 0)
             {
                 _remainingTime -= Time.deltaTime;
+                _teshMeshPro.text = TimeSpan.FromSeconds((double)_remainingTime).ToString(@"mm\:ss");
             }
             else
             {
