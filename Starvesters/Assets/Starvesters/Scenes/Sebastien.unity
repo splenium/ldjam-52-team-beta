@@ -5741,7 +5741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AtmosphereMaterial: {fileID: 2100000, guid: a867686b225c1f847b860be83a934717, type: 2}
   PlanetA: {fileID: 1702846742}
-  PlanetASize: 20
+  PlanetASize: 120
   PlanetAColorA: {r: 0.3800627, g: 1, b: 0, a: 0}
   PlanetAColorB: {r: 1, g: 0.6698078, b: 0, a: 0}
   PlanetB: {fileID: 789397879}
