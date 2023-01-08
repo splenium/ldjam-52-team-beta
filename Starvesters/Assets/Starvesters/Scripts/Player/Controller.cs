@@ -28,41 +28,66 @@ public class Controller : MonoBehaviour
     private Vector2 _lastMousePosition;
     public float DirectionSmooth;
     public float PitchSpeed;
+    public float Decay = 1f;
+    public float MinimumSpeed = 1f;
+    public float BoostFactor = 3f;
     public HandleAvatar Avatar;
     public bool ZeroIsEvil = true;
 
     void Update()
     {
+        if(Input.GetKeyUp("escape"))
+        {
+            MouseLock = !MouseLock;
+            if (!MouseLock)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+
+        float boostFactor = 1f;
+
+        if (Input.GetKey("left shift") || Input.GetKey("right shift"))
+        {
+            boostFactor = BoostFactor;
+        }
+
         var rigidBody = this.gameObject.GetComponent<Rigidbody>();
-        var forwardAcceleration = this.gameObject.transform.forward * AccelerationFactor*Input.GetAxis("Vertical");
+        var forwardAcceleration = this.gameObject.transform.forward * AccelerationFactor * boostFactor * Input.GetAxis("Vertical");
         Avatar.Acceleration = Input.GetAxis("Vertical") * Mathf.Clamp01(rigidBody.velocity.magnitude / 50.0f);
 
-        float rotationX = transform.localEulerAngles.x;
         var curMousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
-        var deltaMousePos = _lastMousePosition - curMousePos;
-        deltaMousePos =  new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        float newRotationY = transform.localEulerAngles.y + deltaMousePos.x* LookSpeedMouse;
+        Vector2 deltaMousePos;
+        if (!MouseLock)
+        {
+            deltaMousePos = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        } else
+        {
+            deltaMousePos = Vector2.zero;
+        }
 
-        float newRotationX = (rotationX - deltaMousePos.y* LookSpeedMouse);
-        if (rotationX <= 90.0f && newRotationX >= 0.0f)
-            newRotationX = Mathf.Clamp(newRotationX, 0.0f, 90.0f);
-        if (rotationX >= 270.0f)
-            newRotationX = Mathf.Clamp(newRotationX, 270.0f, 360.0f);
-
-        float pitch = (Input.GetKey(KeyCode.A) ? 1.0f : 0.0f) + (Input.GetKey(KeyCode.E) ? -1.0f : 0.0f);
-        //transform.localRotation = Quaternion.Euler(newRotationX, newRotationY, transform.localEulerAngles.z);
-        var newQuat = Quaternion.Euler(newRotationX, newRotationY, transform.localEulerAngles.z+ pitch*4.9f);
+        float pitch = Input.GetAxis("Pitch");
 
         var right = this.gameObject.transform.right * deltaMousePos.x * LookSpeedMouse;
         var up = this.gameObject.transform.up * deltaMousePos.y * LookSpeedMouse;
         var quat = Quaternion.LookRotation(this.gameObject.transform.forward + right + up, this.gameObject.transform.up + this.gameObject.transform.right*LookSpeedMouse * pitch* PitchSpeed);
-        rigidBody.MoveRotation(quat);// Quaternion.Slerp(rigidBody.rotation, quat, DirectionSmooth * Time.fixedDeltaTime));
+        rigidBody.MoveRotation(quat);
         rigidBody.maxAngularVelocity = 0.0f;
-        //rigidBody.MoveRotation(quat);
 
         if(ZeroIsEvil) rigidBody.AddForce(this.gameObject.transform.position.normalized*(1.0f-Mathf.Clamp01(this.gameObject.transform.position.magnitude/300.0f))*100.0f);
         rigidBody.AddForce(forwardAcceleration);
+        if(forwardAcceleration.magnitude < 0.1f && rigidBody.velocity.magnitude > MinimumSpeed)
+        {
+            float decayWay = Mathf.Clamp01(Vector3.Dot(rigidBody.velocity.normalized, this.gameObject.transform.forward));
+            rigidBody.AddForce(-transform.forward * rigidBody.velocity.magnitude * Decay * decayWay);
+        }
         rigidBody.velocity = Vector3.Lerp(rigidBody.velocity, this.gameObject.transform.forward * rigidBody.velocity.magnitude, DirectionSmooth * Time.fixedDeltaTime);
         _lastMousePosition = curMousePos;
     }
