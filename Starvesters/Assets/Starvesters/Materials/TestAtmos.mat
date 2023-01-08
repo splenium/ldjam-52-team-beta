@@ -110,8 +110,8 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _PlanetASize: 2333
-    - _PlanetBSize: 1100
-    - _PlanetCSize: 1
+    - _PlanetBSize: 1250
+    - _PlanetCSize: 2200
     - _PlanetSize: 1
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -141,7 +141,7 @@ Material:
     - _PlanetBPos: {r: 0, g: 0, b: 15000, a: 0}
     - _PlanetCColA: {r: 0.051886797, g: 0.084604956, b: 1, a: 0}
     - _PlanetCColB: {r: 0.6764121, g: 0, b: 1, a: 0}
-    - _PlanetCPos: {r: 0, g: 0, b: 200, a: 0}
+    - _PlanetCPos: {r: 0, g: 0, b: 25000, a: 0}
     - _PlanetCol: {r: 0, g: 0, b: 0, a: 0}
     - _PlanetPos: {r: 0, g: 0, b: 0, a: 0}
     - _PlanetPosition: {r: 0, g: 0, b: 0, a: 0}
