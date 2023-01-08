@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Starvesters/Scenes/MainScene.unity
     guid: 85c9faef92461614aa0f504874d5821f
+  - enabled: 1
+    path: Assets/Starvesters/Scenes/CreditScene.unity
+    guid: 383234530dce94a4eab5e4453668a004
   m_configObjects: {}

@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public Color _actualSunColor;
     public HandleSun _handleSun;
     public float _addingTime;
+    public Canvas _canvas;
+    public bool _gameIsRunning;
 
     private List<GameObject> LightHarvest { get; set; }
     public static GameManager Instance { get; private set; }
@@ -64,6 +66,10 @@ public class GameManager : MonoBehaviour
             {
                 TimerIsRunning = false;
                 TimerFinishEvent?.Invoke();
+
+                // Restart canvas appear
+                _canvas.gameObject.SetActive(true);
+                Time.timeScale = 0f;
             }
         }
     }
