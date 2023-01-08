@@ -664,7 +664,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 0
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -10216,7 +10216,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 07d98e475b18c2844a22f277f337f66c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e9608f206ade3c24bae478fb6d960a53, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
   m_Pitch: 1
