@@ -5,7 +5,6 @@ namespace Assets.Starvesters.Scripts
     [ExecuteInEditMode]
     public class OrbitLine : MonoBehaviour
     {
-        [Range(3, 100)]
         public int _segments;
         public LineRenderer _lineRenderer;
 
