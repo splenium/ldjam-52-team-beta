@@ -109,7 +109,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _PlanetASize: 20
+    - _PlanetASize: 120
     - _PlanetBSize: 20
     - _PlanetCSize: 20
     - _PlanetSize: 1

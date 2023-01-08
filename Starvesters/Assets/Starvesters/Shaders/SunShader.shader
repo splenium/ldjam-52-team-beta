@@ -135,7 +135,7 @@ Shader "Unlit/SunShader"
                 float3 rd = normalize(ta - ro);
 
                 rd = getCam(rd, uv);
-                float3 res = trace(ro, rd, 128);
+                float3 res = trace(ro, rd, 16);
                 float alpha = 0.;
                 if (res.y > 0.)
                 {
@@ -168,7 +168,7 @@ Shader "Unlit/SunShader"
             fixed4 frag(v2f i) : SV_Target
             {
                 _time = _Time.y*.3;
-                float4 col = rdr((i.uv-.5)*2.,i.uv);
+                float4 col = rdr((i.uv-.5)*2.,i.uv)*2.0;
                 return col;
             }
             ENDCG
