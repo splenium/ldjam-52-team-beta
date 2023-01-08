@@ -7,12 +7,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // public TextMeshProUGUI _teshMeshPro;
+    public float _winningTime;
     public float _remainingTime;
+    public float _addingTime;
+
     public Color _actualSunColor;
     public HandleSun _handleSun;
-    public float _addingTime;
+        
     public Canvas _canvas;
-    public bool _gameIsRunning;
+    public Material _uiMaterial;
 
     private List<GameObject> LightHarvest { get; set; }
     public static GameManager Instance { get; private set; }
@@ -39,14 +42,12 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         LightHarvest = new List<GameObject>();
+
         _handleSun.SunColor = _actualSunColor;
+        _uiMaterial.SetColor("_ColorSun", _actualSunColor);
     }
     // TODO :
-    // - Création d'evènement pour : ajouter du temps
     // - Enlever de la luminosité au fur et a mesure du temps
-    // - Implémenter l'UI de récupération de la lumière
-    // - Pouvoir récupérer une lumière
-    // - Additionner les lumières et le setup sur le soleil
 
     void FixedUpdate()
     {
@@ -57,10 +58,15 @@ public class GameManager : MonoBehaviour
     {
         if (TimerIsRunning)
         {
-            if (_remainingTime > 0)
+            if (_remainingTime <= _winningTime)
+            {
+                // TODO : Faire gagner le joueur
+            }
+            else if (_remainingTime > 0)
             {
                 _remainingTime -= Time.deltaTime;
-                // _teshMeshPro.text = TimeSpan.FromSeconds((double)_remainingTime).ToString(@"mm\:ss");
+
+                _uiMaterial.SetFloat("_Progress", _remainingTime / _winningTime);
             }
             else
             {
@@ -79,11 +85,11 @@ public class GameManager : MonoBehaviour
         // On ajoute notre lumière à notre personnage
         LightHarvest.Add(light);
         Debug.Log($"Player have {LightHarvest.Count()} ");
+
         // On change la couleur de notre soleil
         _actualSunColor = light.GetComponent<TreeCollectible>().Color;
         _handleSun.SunColor = _actualSunColor;
-
-        // On icrémente le compter de lumière
+        _uiMaterial.SetColor("_ColorSun", _actualSunColor);
 
         // On icrément le temps restant
         _remainingTime += _addingTime;
