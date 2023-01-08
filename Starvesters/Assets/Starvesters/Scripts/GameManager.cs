@@ -1,11 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using Color = UnityEngine.Color;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameStateEnum { Introduction, Played, Ended }
+
+    public GameStateEnum _gameState;
     public GameObject _playerElements;
     public GameObject _camera;
 
@@ -29,6 +35,7 @@ public class GameManager : MonoBehaviour
     public delegate void TimerFinish();
     public event TimerFinish TimerFinishEvent;
 
+    private bool StartingGame { get; set; }
     private bool TimerIsRunning { get; set; } = true;
 
     public ShowHideAtmospheres _showHideAtmospheres;
@@ -53,11 +60,23 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         _handleSun.SunColor = _actualSunColor;
         _uiMaterial.SetColor("_ColorSun", _actualSunColor);
+        StartingGame = true;
     }
 
     void FixedUpdate()
     {
-        Timer();
+        switch (_gameState)
+        {
+            case GameStateEnum.Introduction:
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    _gameState = GameStateEnum.Played;
+                }
+                break;
+            case GameStateEnum.Played:
+                Timer();
+                break;
+        }
     }
 
     private void Timer()
