@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using Color = UnityEngine.Color;
@@ -10,6 +11,9 @@ using Color = UnityEngine.Color;
 public class GameManager : MonoBehaviour
 {
     public enum GameStateEnum { Introduction, Played, Ended }
+    public List<GameObject> _playedGameObjects;
+    public List<GameObject> _introductionGameObjects;
+    public List<GameObject> _endGameObects;
 
     public GameStateEnum _gameState;
     public GameObject _playerElements;
@@ -58,9 +62,17 @@ public class GameManager : MonoBehaviour
     {
         LightHarvest = new List<GameObject>();
         Time.timeScale = 1f;
+        _gameState = GameStateEnum.Introduction;
         _handleSun.SunColor = _actualSunColor;
         _uiMaterial.SetColor("_ColorSun", _actualSunColor);
         StartingGame = true;
+
+        PlayedActived(false);
+
+        foreach (var playedGameObject in _introductionGameObjects)
+        {
+            playedGameObject.SetActive(true);
+        }
     }
 
     void FixedUpdate()
@@ -71,6 +83,14 @@ public class GameManager : MonoBehaviour
                 if (Input.GetKey(KeyCode.Space))
                 {
                     _gameState = GameStateEnum.Played;
+
+                    PlayedActived(true);
+                    foreach (var playedGameObject in _introductionGameObjects)
+                    {
+                        playedGameObject.SetActive(false);
+                    }
+
+                    _showHideAtmospheres.Visible = true;
                 }
                 break;
             case GameStateEnum.Played:
@@ -133,5 +153,12 @@ public class GameManager : MonoBehaviour
         _remainingTime += _addingTime;
     }
 
+    public void PlayedActived(bool active)
+    {
+        foreach (var playedGameObject in _playedGameObjects)
+        {
+            playedGameObject.SetActive(active);
+        }
+    }
 }
 
