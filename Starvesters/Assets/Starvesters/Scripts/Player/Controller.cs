@@ -8,25 +8,6 @@ public class Controller : MonoBehaviour
     public bool MouseLock;
     public float LookSpeedMouse;
 
-    //private void Update()
-    //{
-    //    if (!MouseLock)
-    //    {
-    //        //Cursor.visible = true;
-    //        Cursor.lockState = CursorLockMode.None;
-    //    }
-    //    else
-    //    {
-    //        //Cursor.visible = false;
-    //        Cursor.lockState = CursorLockMode.Locked;
-    //    }
-    //    var curAxis = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-    //    _deltaAxis = _lastAxis - curAxis;
-    //    _lastAxis = curAxis;
-    //}
-    private Vector2 _deltaAxis;
-    private Vector2 _lastAxis;
-    private Vector2 _lastMousePosition;
     public float DirectionSmooth;
     public float PitchSpeed;
     public float Decay = 1f;
@@ -71,7 +52,7 @@ public class Controller : MonoBehaviour
 
         float boostFactor = 1f;
 
-        if (Input.GetKey("left shift") || Input.GetKey("right shift"))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             boostFactor = BoostFactor;
         }
@@ -82,10 +63,8 @@ public class Controller : MonoBehaviour
         float acceleration = Mathf.Lerp(AccelerationFactor, PlanetAccelerationFactor, 1.0f- Mathf.Clamp01(planetDistance / planetSize));
 
         var rigidBody = this.gameObject.GetComponent<Rigidbody>();
-        var forwardAcceleration = this.gameObject.transform.forward * AccelerationFactor * boostFactor * Input.GetAxis("Vertical");
+        var forwardAcceleration = this.gameObject.transform.forward * acceleration * boostFactor * Input.GetAxis("Vertical");
         Avatar.Acceleration = Input.GetAxis("Vertical") * Mathf.Clamp01(rigidBody.velocity.magnitude / 50.0f);
-
-        var curMousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
         Vector2 deltaMousePos;
         if (!MouseLock)
@@ -96,7 +75,7 @@ public class Controller : MonoBehaviour
             deltaMousePos = Vector2.zero;
         }
 
-        float pitch = Input.GetAxis("Pitch");
+        float pitch = Input.GetAxis("Horizontal");
 
         var right = this.gameObject.transform.right * deltaMousePos.x * LookSpeedMouse;
         var up = this.gameObject.transform.up * deltaMousePos.y * LookSpeedMouse;
@@ -112,6 +91,5 @@ public class Controller : MonoBehaviour
             rigidBody.AddForce(-transform.forward * rigidBody.velocity.magnitude * Decay * decayWay);
         }
         rigidBody.velocity = Vector3.Lerp(rigidBody.velocity, this.gameObject.transform.forward * rigidBody.velocity.magnitude, DirectionSmooth * Time.fixedDeltaTime);
-        _lastMousePosition = curMousePos;
     }
 }
