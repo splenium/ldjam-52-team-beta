@@ -8,8 +8,11 @@ public class HandleAvatar : MonoBehaviour
     public Vector3 RotateSpeed;
     [Range(0.0f, 1.0f)]
     public float Acceleration;
+    public float Boost;
     public Material ThrusterMat;
+    public Material ThrusterMatBoost;
     public AudioSource ThrusterAudio;
+    public AudioSource BoostAudio;
 
 
     public GameObject GemA;
@@ -41,5 +44,8 @@ public class HandleAvatar : MonoBehaviour
 
         ThrusterAudio.volume = Mathf.Lerp(0.01f, 0.05f, Acceleration);
         ThrusterAudio.pitch = Mathf.Lerp(0.8f, 1.5f, Acceleration);
+
+        BoostAudio.volume = Mathf.Lerp(0.01f, 0.05f, Acceleration)*Boost;
+        BoostAudio.pitch = Mathf.Lerp(0.8f, 1.5f, Acceleration);
     }
 }
