@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TestAtmos
-  m_Shader: {fileID: -6465566751694194690, guid: 46217e20c6b64164e8d361d176269be8,
+  m_Name: UIHarvest
+  m_Shader: {fileID: -6465566751694194690, guid: 5d8568ac96b0ded4688db57f2d7249cf,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -68,10 +68,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture2DAsset_356ee4b3b822422d902abcbc0138279b_Out_0:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -88,7 +84,6 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Bias: 0.385
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -104,50 +99,28 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Intensity: 20.4
-    - _MaxDist: 0.022
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _PlanetASize: 5
-    - _PlanetBSize: 5
-    - _PlanetCSize: 15
-    - _PlanetSize: 1
-    - _QueueControl: 0
+    - _Progress: 0.5
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Sample: 12
-    - _Sample_Radian: 0.077
-    - _Scale: 16
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Visibility: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - PlanetAPos: {r: 0, g: 0, b: -5.51, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorSun: {r: 0.3759594, g: 0, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PlanetAColA: {r: 1, g: 0, b: 0, a: 0}
-    - _PlanetAColB: {r: 0.8207547, g: 0.7306811, b: 0.127759, a: 0}
-    - _PlanetAPos: {r: 7.7009373, g: 0, b: 28.995905, a: 0}
-    - _PlanetBColA: {r: 0.11196155, g: 0.6415094, b: 0.21440257, a: 0}
-    - _PlanetBColB: {r: 0.810094, g: 0.8867924, b: 0.10457456, a: 0}
-    - _PlanetBPos: {r: 14.371957, g: 0, b: 98.961845, a: 0}
-    - _PlanetCColA: {r: 0.051886797, g: 0.084604956, b: 1, a: 0}
-    - _PlanetCColB: {r: 0.6764121, g: 0, b: 1, a: 0}
-    - _PlanetCPos: {r: 17.28469, g: 0, b: 199.2517, a: 0}
-    - _PlanetCol: {r: 0, g: 0, b: 0, a: 0}
-    - _PlanetPos: {r: 0, g: 0, b: 0, a: 0}
-    - _PlanetPosition: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &6946018576740120708
+--- !u!114 &3033795071775380341
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
