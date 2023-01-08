@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     {
         if (TimerIsRunning)
         {
-            if (_remainingTime <= _winningTime)
+            if (_remainingTime >= _winningTime)
             {
                 // TODO : Faire gagner le joueur
             }
