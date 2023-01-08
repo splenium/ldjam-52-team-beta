@@ -111,12 +111,15 @@ public class Controller : MonoBehaviour
         }
 
         float boostFactor = 1f;
-
+        Avatar.ThrusterMatBoost.SetFloat("_Acceleration", 0.0f);
+        Avatar.Boost = 0.0f;
         if (Input.GetKey(KeyboardLayout.boost))
         {
             boostFactor = BoostFactor;
+            Avatar.ThrusterMatBoost.SetFloat("_Acceleration", 1.0f);
+            Avatar.Boost = 1.0f;
         }
-
+        
         var nearestPlanet = getNearestPlanet();
         float planetDistance = Vector3.Distance(nearestPlanet.transform.position, transform.position);
         float planetSize = nearestPlanet.GetComponent<Planet>().shapeSettings.planetSize*2.5f;
