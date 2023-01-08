@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public float _remainingTime;
     public Color _actualSunColor;
     public HandleSun _handleSun;
+    public float _addingTime;
 
     private List<GameObject> LightHarvest { get; set; }
     public static GameManager Instance { get; private set; }
@@ -66,17 +68,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddLightHarvest(GameObject light)
+    public void LightIsHarvest(GameObject light)
     {
         // On ajoute notre lumière à notre personnage
         LightHarvest.Add(light);
-
+        Debug.Log($"Player have {LightHarvest.Count()} ");
         // On change la couleur de notre soleil
-        Color gameObjectColor = new Color();
-        _actualSunColor += gameObjectColor;
+        _actualSunColor = light.GetComponent<TreeCollectible>().Color;
         _handleSun.SunColor = _actualSunColor;
 
         // On icrémente le compter de lumière
+
+        // On icrément le temps restant
+        _remainingTime += _addingTime;
     }
+
 }
 
