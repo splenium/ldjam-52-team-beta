@@ -23,7 +23,7 @@ public class TreeCollectible : MonoBehaviour
 
             // TODO particle + sound
             _isReady = false;
-            _applyMatToChildren(UnReady);
+            _applyColorToChildren(Color.black);
             Audio.Play();
             StartCoroutine(_makeItReady());
         }
@@ -33,30 +33,36 @@ public class TreeCollectible : MonoBehaviour
     IEnumerator _makeItReady()
     {
         yield return new WaitForSeconds(ReadyDelay);
-        _applyMatToChildren(Ready);
+        _applyColorToChildren(Color);
         _isReady = true;
     }
-    private void _applyMatToChildren(Material mat)
+    private void _applyColorToChildren(Color col)
     {
         foreach(Transform t in ParentSeeds)
         {
-            t.gameObject.GetComponent<MeshRenderer>().material = mat;
+            Material toEdit = t.gameObject.GetComponent<MeshRenderer>().material;
+            if(Color.Equals(Color.black))
+            {
+                toEdit.DisableKeyword("_EMISSION");
+            }
+            else
+            {
+                toEdit.EnableKeyword("_EMISSION");
+            }
+            toEdit.SetColor("_EmissionColor", col);
         }
     }
 
-    void ColorChildSeed()
-    {
-        foreach (var seed in ParentSeeds) { }
-
-    }
     private void Start()
     {
+        //Ready.EnableKeyword("_EMISSION");
+        //Ready.SetColor("_EmissionColor", Color);
         _isReady = true;
-        _applyMatToChildren(Ready);
+        _applyColorToChildren(Color);
         Audio.pitch += UnityEngine.Random.Range(-1.0f, 1.0f) * 0.2f;
     }
-    void Update()
-    {
-        Ready.SetColor("_EmissionColor", Color);
-    }
+    //void Update()
+    //{
+    //    Ready.SetColor("_EmissionColor", Color);
+    //}
 }
