@@ -3317,11 +3317,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2698620825776182758, guid: 7a51a893504c78e47a6dee845955017f,
-        type: 3}
-      propertyPath: far clip plane
-      value: 100000
-      objectReference: {fileID: 0}
     - target: {fileID: 3002463317795710416, guid: 7a51a893504c78e47a6dee845955017f,
         type: 3}
       propertyPath: m_Name
@@ -3345,7 +3340,7 @@ PrefabInstance:
     - target: {fileID: 3002463317795710420, guid: 7a51a893504c78e47a6dee845955017f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.7239323
+      value: -32.49
       objectReference: {fileID: 0}
     - target: {fileID: 3002463317795710420, guid: 7a51a893504c78e47a6dee845955017f,
         type: 3}
