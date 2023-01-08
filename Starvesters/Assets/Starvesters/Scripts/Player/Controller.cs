@@ -62,7 +62,7 @@ public class Controller : MonoBehaviour
         rigidBody.maxAngularVelocity = 0.0f;
         //rigidBody.MoveRotation(quat);
 
-
+        rigidBody.AddForce(this.gameObject.transform.position.normalized*(1.0f-Mathf.Clamp01(this.gameObject.transform.position.magnitude/300.0f))*100.0f);
         rigidBody.AddForce(forwardAcceleration);
         rigidBody.velocity = Vector3.Lerp(rigidBody.velocity, this.gameObject.transform.forward * rigidBody.velocity.magnitude, DirectionSmooth * Time.fixedDeltaTime);
         _lastMousePosition = curMousePos;
