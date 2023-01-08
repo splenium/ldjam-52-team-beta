@@ -81,6 +81,7 @@ public class Planet : MonoBehaviour
         foreach(Transform child in transform)
         {
             child.localPosition = Vector3.zero;
+            child.localRotation = Quaternion.identity;
         }
     }
 
