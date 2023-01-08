@@ -39,7 +39,7 @@ public class HandleAvatar : MonoBehaviour
 
         ThrusterMat.SetFloat("_Acceleration", Acceleration);
 
-        ThrusterAudio.volume = Mathf.Lerp(0.1f, 0.2f, Acceleration);
+        ThrusterAudio.volume = Mathf.Lerp(0.01f, 0.05f, Acceleration);
         ThrusterAudio.pitch = Mathf.Lerp(0.8f, 1.5f, Acceleration);
     }
 }
