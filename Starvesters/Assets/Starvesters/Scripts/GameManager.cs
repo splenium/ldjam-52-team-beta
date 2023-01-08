@@ -47,11 +47,7 @@ public class GameManager : MonoBehaviour
         _uiMaterial.SetColor("_ColorSun", _actualSunColor);
     }
     // TODO :
-    // - Création d'evènement pour : ajouter du temps
     // - Enlever de la luminosité au fur et a mesure du temps
-    // - Implémenter l'UI de récupération de la lumière
-    // - Pouvoir récupérer une lumière
-    // - Additionner les lumières et le setup sur le soleil
 
     void FixedUpdate()
     {
@@ -62,12 +58,15 @@ public class GameManager : MonoBehaviour
     {
         if (TimerIsRunning)
         {
-            if (_remainingTime > 0)
+            if (_remainingTime <= _winningTime)
+            {
+                // TODO : Faire gagner le joueur
+            }
+            else if (_remainingTime > 0)
             {
                 _remainingTime -= Time.deltaTime;
 
-                _uiMaterial.SetFloat("_Progress", _remainingTime / 120.0f );
-                // _teshMeshPro.text = TimeSpan.FromSeconds((double)_remainingTime).ToString(@"mm\:ss");
+                _uiMaterial.SetFloat("_Progress", _remainingTime / _winningTime);
             }
             else
             {
@@ -86,6 +85,7 @@ public class GameManager : MonoBehaviour
         // On ajoute notre lumière à notre personnage
         LightHarvest.Add(light);
         Debug.Log($"Player have {LightHarvest.Count()} ");
+
         // On change la couleur de notre soleil
         _actualSunColor = light.GetComponent<TreeCollectible>().Color;
         _handleSun.SunColor = _actualSunColor;
