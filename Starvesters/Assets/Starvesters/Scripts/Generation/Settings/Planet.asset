@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d30c4684909994db2202124d63f42b, type: 3}
   m_Name: Planet
   m_EditorClassIdentifier: 
-  planetSize: 2000
+  planetSize: 1700
   noiseLayers:
   - enabled: 1
     useFirstLayerAsMask: 0
