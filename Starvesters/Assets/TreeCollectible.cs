@@ -44,7 +44,7 @@ public class TreeCollectible : MonoBehaviour
             if(Color.Equals(Color.black))
             {
                 toEdit.DisableKeyword("_EMISSION");
-            }
+            } 
             else
             {
                 toEdit.EnableKeyword("_EMISSION");
