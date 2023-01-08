@@ -135,7 +135,7 @@ Shader "Unlit/SunShader"
                 float3 rd = normalize(ta - ro);
 
                 rd = getCam(rd, uv);
-                float3 res = trace(ro, rd, 128);
+                float3 res = trace(ro, rd, 16);
                 float alpha = 0.;
                 if (res.y > 0.)
                 {
