@@ -38,7 +38,7 @@ float densityAtPoint(float3 densitySamplePoint)
 
 float opticalDepth(float3 rayOrigin, float3 rayDir, float rayLength)
 {
-	int densityPointCnt = 10;
+	int densityPointCnt = 5;
 	float3 densitySamplePoint = rayOrigin;
 	float stepSize = rayLength / (densityPointCnt - 1);
 	float opticalDepth = 0.;
@@ -56,7 +56,7 @@ float opticalDepth(float3 rayOrigin, float3 rayDir, float rayLength)
 float3 _scatterCoefs;
 float3 calculateLight(float3 rayOrigin, float3 rayDir, float rayLength)
 {
-	int scatteringPointCnt = 10;
+	int scatteringPointCnt = 5;
 	float3 inScatterPoint = rayOrigin;
 	float stepSize = rayLength / (scatteringPointCnt - 1);
 	float3 inScatterLight = 0.;
