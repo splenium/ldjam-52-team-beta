@@ -1,12 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Diagnostics;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using Color = UnityEngine.Color;
+using Debug = UnityEngine.Debug;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +27,15 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI _teshMeshProInformationMessage;
     private const string _winningMessage = "Well played , you've won";
     private const string _losingMessage = "Nice try, but you lose";
+
+    public Color[] AllColors;
+    public bool UseForceIndex;
+    public int ForcedIndex;
+
+    [Tooltip("Plus la valeur est grande plus toute les couleurs seront égale pour le GameManager (calcul de distance entre la couleur du collectible et celle de la target)")]
+    public float ColorSensitive = 0.2f;
+
+    public Color TargetColor { get; private set; }
 
     public Material _uiMaterial;
 
@@ -55,15 +63,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void SetSunColor(Color newColor)
+    {
+        _actualSunColor = newColor;
+        _handleSun.SunColor = newColor;
+        _uiMaterial.SetColor("_ColorSun", newColor);
+    }
+
     public void Start()
     {
+        if(AllColors == null || AllColors.Length == 0)
+        {
+            Debug.LogError("GameManager.AllColors cannot be empty or null !");
+        }
+
         LightHarvest = new List<GameObject>();
         Time.timeScale = 1f;
 
-        _handleSun.SunColor = _actualSunColor;
-        _uiMaterial.SetColor("_ColorSun", _actualSunColor);
-
         InitState();
+
+        TargetColor = AllColors[UseForceIndex ? ForcedIndex : Random.Range(0, AllColors.Length - 1)];
+        SetSunColor(TargetColor);
     }
 
     void InitState()
@@ -101,13 +121,7 @@ public class GameManager : MonoBehaviour
                 {
                     _gameState = GameStateEnum.Played;
 
-                    PlayedActived(true);
-                    foreach (var playedGameObject in _introductionGameObjects)
-                    {
-                        playedGameObject.SetActive(false);
-                    }
-
-                    _showHideAtmospheres.Visible = true;
+                    InitState();
                 }
                 break;
             case GameStateEnum.Played:
@@ -158,19 +172,24 @@ public class GameManager : MonoBehaviour
     public void LightIsHarvest(GameObject light)
     {
         // On ajoute notre lumière à notre personnage
-        LightHarvest.Add(light);
         TreeCollectible collectible = light.GetComponent<TreeCollectible>();
         if(collectible)
         {
-            Debug.Log($"Player have {LightHarvest.Count()} ");
+            // Compare la distance entre les couleurs
+            Vector3 collectibleColorVectorized = new Vector3(collectible.Color.r, collectible.Color.g, collectible.Color.b);
+            Vector3 targetColorVectorized = new Vector3(TargetColor.r, TargetColor.g, TargetColor.b);
+            bool sameColor = Vector3.Distance(collectibleColorVectorized, targetColorVectorized) < 0.2f;
 
-            // On change la couleur de notre soleil
-            _actualSunColor = collectible.Color;
-            _handleSun.SunColor = _actualSunColor;
-            _uiMaterial.SetColor("_ColorSun", _actualSunColor);
+            //Debug.Log($"{sameColor}, distance was {Vector3.Distance(collectibleColorVectorized, targetColorVectorized)} target is {TargetColor.ToHexString()} and collectible was {collectible.Color.ToHexString()}");
+            if (sameColor)
+            {
+                Debug.Log("Harvest Light !");
+                //LightHarvest.Add(light);
+                //Debug.Log($"Player have {LightHarvest.Count()}");
 
-            // On icrément le temps restant
-            _remainingTime += collectible._timeGain;
+                // On icrément le temps restant
+                _remainingTime += collectible._timeGain;
+            }
         }
     }
 
