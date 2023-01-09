@@ -12,7 +12,7 @@ public class TreeCollectible : MonoBehaviour
     public AudioSource Audio;
 
     private bool _isReady;
-
+    static float _lastSoundPlay;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Player" && _isReady)
@@ -22,7 +22,11 @@ public class TreeCollectible : MonoBehaviour
             // TODO particle + sound
             _isReady = false;
             _applyColorToChildren(Color.black);
-            Audio.Play();
+            if (Mathf.Abs(Time.realtimeSinceStartup - _lastSoundPlay) > 0.05f)
+            {
+                Audio.Play();
+                _lastSoundPlay = Time.realtimeSinceStartup;
+            }
             StartCoroutine(_makeItReady());
         }
 
@@ -36,13 +40,13 @@ public class TreeCollectible : MonoBehaviour
     }
     private void _applyColorToChildren(Color col)
     {
-        foreach(Transform t in ParentSeeds)
+        foreach (Transform t in ParentSeeds)
         {
             Material toEdit = t.gameObject.GetComponent<MeshRenderer>().material;
-            if(Color.Equals(Color.black))
+            if (Color.Equals(Color.black))
             {
                 toEdit.DisableKeyword("_EMISSION");
-            } 
+            }
             else
             {
                 toEdit.EnableKeyword("_EMISSION");
@@ -72,6 +76,6 @@ public class TreeCollectible : MonoBehaviour
             }
             _isShown = shouldBeVisible;
         }
-        
+
     }
 }
