@@ -81,7 +81,7 @@ void HandlePlanetAtmosphere_hlsl_float(float2 uv, float3 inputCol, float depth, 
 			_densityFalloff = 10.0f;
 			_planetPos = planetPos;
 			_planetRadius = planetSize;
-			_atmosRadius = _planetRadius+_planetRadius*2.1f;
+			_atmosRadius = _planetRadius+_planetRadius*3.1f;
 		viewDir = -viewDir;
 		float2 hit = RaySphereIntersection(planetPos, _atmosRadius, worldSpaceCameraPos, viewDir);
 				float dstToAtmos = hit.x;
