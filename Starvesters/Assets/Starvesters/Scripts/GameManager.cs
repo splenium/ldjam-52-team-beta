@@ -159,15 +159,19 @@ public class GameManager : MonoBehaviour
     {
         // On ajoute notre lumière à notre personnage
         LightHarvest.Add(light);
-        Debug.Log($"Player have {LightHarvest.Count()} ");
+        TreeCollectible collectible = light.GetComponent<TreeCollectible>();
+        if(collectible)
+        {
+            Debug.Log($"Player have {LightHarvest.Count()} ");
 
-        // On change la couleur de notre soleil
-        _actualSunColor = light.GetComponent<TreeCollectible>().Color;
-        _handleSun.SunColor = _actualSunColor;
-        _uiMaterial.SetColor("_ColorSun", _actualSunColor);
+            // On change la couleur de notre soleil
+            _actualSunColor = collectible.Color;
+            _handleSun.SunColor = _actualSunColor;
+            _uiMaterial.SetColor("_ColorSun", _actualSunColor);
 
-        // On icrément le temps restant
-        _remainingTime += light.GetComponent<TreeCollectible>()._timeGain;
+            // On icrément le temps restant
+            _remainingTime += collectible._timeGain;
+        }
     }
 
     public void PlayedActived(bool active)

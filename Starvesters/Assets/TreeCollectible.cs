@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 public class TreeCollectible : MonoBehaviour
 {
     public static float ReadyDelay = 10.0f;
-    public Material Ready;
-    public Material UnReady;
     public Color Color;
     public float _timeGain;
 
@@ -56,14 +53,8 @@ public class TreeCollectible : MonoBehaviour
 
     private void Start()
     {
-        //Ready.EnableKeyword("_EMISSION");
-        //Ready.SetColor("_EmissionColor", Color);
         _isReady = true;
         _applyColorToChildren(Color);
-        Audio.pitch += UnityEngine.Random.Range(-1.0f, 1.0f) * 0.2f;
+        Audio.pitch += Random.Range(-1.0f, 1.0f) * 0.2f;
     }
-    //void Update()
-    //{
-    //    Ready.SetColor("_EmissionColor", Color);
-    //}
 }
