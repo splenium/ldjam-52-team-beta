@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public float _winningTime;
     public float _remainingTime;
+    public bool TimerIsRunning = true;
+
 
     public Color _actualSunColor;
     public HandleSun _handleSun;
@@ -40,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     public float MinimumSunSize = 100f;
     public float MaximumSunSize = 15000f;
+    public float SunScaleSpeed = 1.0f;
+    private Vector3 sunScaleTarget;
 
     public Material _uiMaterial;
 
@@ -49,7 +53,6 @@ public class GameManager : MonoBehaviour
     public delegate void TimerFinish();
     public event TimerFinish TimerFinishEvent;
 
-    private bool TimerIsRunning { get; set; } = true;
 
     public ShowHideAtmospheres _showHideAtmospheres;
     
@@ -88,6 +91,9 @@ public class GameManager : MonoBehaviour
         InitState();
 
         TargetColor = AllColors[UseForceIndex ? ForcedIndex : Random.Range(0, AllColors.Length - 1)];
+
+        CalculateSunScale();
+        SunRenderer.transform.localScale = sunScaleTarget;
         SetSunColor(TargetColor);
     }
 
@@ -119,6 +125,10 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Debug.Log($"{sunScaleTarget},  {SunRenderer.transform.localScale} = {Vector3.MoveTowards(SunRenderer.transform.localScale, sunScaleTarget, SunScaleSpeed * Time.fixedDeltaTime)}");
+        // Sun scale
+        SunRenderer.transform.localScale = Vector3.MoveTowards(SunRenderer.transform.localScale, sunScaleTarget, SunScaleSpeed * Time.fixedDeltaTime);
+
         switch (_gameState)
         {
             case GameStateEnum.Introduction:
@@ -139,7 +149,9 @@ public class GameManager : MonoBehaviour
     void CalculateSunScale()
     {
         float percentAchivment = _remainingTime / _winningTime;
-        SunRenderer.transform.localScale = Vector3.Max(Vector3.one * MinimumSunSize, Vector3.one * MaximumSunSize * percentAchivment);
+        float sizeDifference = (MaximumSunSize - MinimumSunSize) * percentAchivment + MinimumSunSize;
+
+        sunScaleTarget = sizeDifference * Vector3.one;
     }
 
     private void Timer()
