@@ -130,7 +130,7 @@ public class Controller : MonoBehaviour
 
         var rigidBody = this.gameObject.GetComponent<Rigidbody>();
         var forwardAcceleration = this.gameObject.transform.forward * acceleration * boostFactor * GetAxis(Axes.Vertical);
-        Avatar.Acceleration = GetAxis(Axes.Vertical) * Mathf.Clamp01(rigidBody.velocity.magnitude / 50.0f);
+        Avatar.Acceleration = GetAxis(Axes.Vertical) * Mathf.Clamp01(rigidBody.velocity.magnitude / 350.0f);
 
         Vector2 deltaMousePos;
         if (!MouseLock)
