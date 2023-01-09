@@ -123,12 +123,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         //Debug.Log($"{sunScaleTarget},  {SunRenderer.transform.localScale} = {Vector3.MoveTowards(SunRenderer.transform.localScale, sunScaleTarget, SunScaleSpeed * Time.fixedDeltaTime)}");
         // Sun scale
-        SunRenderer.transform.localScale = Vector3.MoveTowards(SunRenderer.transform.localScale, sunScaleTarget, SunScaleSpeed * Time.fixedDeltaTime);
+        SunRenderer.transform.localScale = Vector3.MoveTowards(SunRenderer.transform.localScale, sunScaleTarget, SunScaleSpeed * Time.fixedDeltaTime);    
+    }
 
+    void Update()
+    {
         switch (_gameState)
         {
             case GameStateEnum.Introduction:
