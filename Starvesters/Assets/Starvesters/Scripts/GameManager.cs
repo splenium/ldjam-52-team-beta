@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public float MinimumSunSize = 100f;
     public float MaximumSunSize = 15000f;
-    public float SunScaleSpeed = 1.0f;
+    public float SunScaleSpeed = 1500f;
     private Vector3 sunScaleTarget;
 
     public Material _uiMaterial;
