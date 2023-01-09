@@ -63,11 +63,32 @@ public class GameManager : MonoBehaviour
         _handleSun.SunColor = _actualSunColor;
         _uiMaterial.SetColor("_ColorSun", _actualSunColor);
 
-        PlayedActived(false);
+        InitState();
+    }
 
-        foreach (var playedGameObject in _introductionGameObjects)
+    void InitState()
+    {
+        switch (_gameState)
         {
-            playedGameObject.SetActive(true);
+            case GameStateEnum.Introduction:
+                PlayedActived(false);
+                foreach (var playedGameObject in _introductionGameObjects)
+                {
+                    playedGameObject.SetActive(true);
+                }
+
+                _showHideAtmospheres.Visible = false;
+
+                break;
+            case GameStateEnum.Played:
+                PlayedActived(true);
+                foreach (var playedGameObject in _introductionGameObjects)
+                {
+                    playedGameObject.SetActive(false);
+                }
+
+                _showHideAtmospheres.Visible = true;
+                break;
         }
     }
 
