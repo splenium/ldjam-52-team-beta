@@ -52,6 +52,7 @@ public class Controller : MonoBehaviour
         qwerty = new KeyMap(KeyCode.LeftShift, KeyCode.W, KeyCode.S, KeyCode.D, KeyCode.A);
         azerty = new KeyMap(KeyCode.LeftShift, KeyCode.Z, KeyCode.S, KeyCode.Q, KeyCode.D);
         SetKeyboardLayout();
+        MouseChanged();
     }
 
     void SetKeyboardLayout()
@@ -88,23 +89,35 @@ public class Controller : MonoBehaviour
         return nearest;
     }
 
+    void MouseChanged()
+    {
+        if (!MouseLock)
+        {
+            Debug.Log("Mouse is locked");
+            //Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        else
+        {
+            Debug.Log("Mouse is free");
+            //Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        Debug.Log(Cursor.lockState.ToString());
+    }
+
 
 
     void Update()
     {
+        if(!MouseLock && Input.GetButtonUp("Fire1"))
+        {
+            MouseLock = true;
+        }
         if(Input.GetKeyUp("escape"))
         {
             MouseLock = !MouseLock;
-            if (!MouseLock)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+            MouseChanged();
         }
 
         if(Input.GetKeyUp("k"))
