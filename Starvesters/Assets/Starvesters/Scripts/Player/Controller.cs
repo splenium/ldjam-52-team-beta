@@ -110,11 +110,12 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
-        if(!MouseLock && Input.GetButtonUp("Fire1"))
+        if(MouseLock && Input.GetButtonUp("Fire1"))
         {
-            MouseLock = true;
+            MouseLock = false;
+            MouseChanged();
         }
-        if(Input.GetKeyUp("escape"))
+        if (Input.GetKeyUp("escape"))
         {
             MouseLock = !MouseLock;
             MouseChanged();
