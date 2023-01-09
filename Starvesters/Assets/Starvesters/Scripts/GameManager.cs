@@ -22,24 +22,28 @@ public class GameManager : MonoBehaviour
 
     public Color _actualSunColor;
     public HandleSun _handleSun;
-        
+    private GameObject SunRenderer;
+
+
     public Canvas _menu;
     public TextMeshProUGUI _teshMeshProInformationMessage;
     private const string _winningMessage = "Well played , you've won";
     private const string _losingMessage = "Nice try, but you lose";
 
+    // Color Mechanic
     public Color[] AllColors;
     public bool UseForceIndex;
     public int ForcedIndex;
-
     [Tooltip("Plus la valeur est grande plus toute les couleurs seront égale pour le GameManager (calcul de distance entre la couleur du collectible et celle de la target)")]
     public float ColorSensitive = 0.2f;
-
     public Color TargetColor { get; private set; }
+
+    public float MinimumSunSize = 100f;
+    public float MaximumSunSize = 15000f;
 
     public Material _uiMaterial;
 
-    private List<GameObject> LightHarvest { get; set; }
+    //private List<GameObject> LightHarvest { get; set; }
     public static GameManager Instance { get; private set; }
     
     public delegate void TimerFinish();
@@ -72,12 +76,13 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        if(AllColors == null || AllColors.Length == 0)
+        SunRenderer = _handleSun.gameObject;
+        if (AllColors == null || AllColors.Length == 0)
         {
             Debug.LogError("GameManager.AllColors cannot be empty or null !");
         }
 
-        LightHarvest = new List<GameObject>();
+        //LightHarvest = new List<GameObject>();
         Time.timeScale = 1f;
 
         InitState();
@@ -126,8 +131,15 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStateEnum.Played:
                 Timer();
+                CalculateSunScale();
                 break;
         }
+    }
+
+    void CalculateSunScale()
+    {
+        float percentAchivment = _remainingTime / _winningTime;
+        SunRenderer.transform.localScale = Vector3.Max(Vector3.one * MinimumSunSize, Vector3.one * MaximumSunSize * percentAchivment);
     }
 
     private void Timer()
