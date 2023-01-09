@@ -109,7 +109,7 @@ Shader "Unlit/SunShader"
             {
                 accCol = 0.;
                 float3 p = ro;
-                for (int i = 0; i < 16 && distance(p, ro) < 10.; ++i)
+                for (int i = 0; i < 8; ++i)
                 {
                     float2 res = map(p);
                     if (res.x < 0.001)

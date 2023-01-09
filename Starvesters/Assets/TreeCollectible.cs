@@ -56,5 +56,22 @@ public class TreeCollectible : MonoBehaviour
         _isReady = true;
         _applyColorToChildren(Color);
         Audio.pitch += Random.Range(-1.0f, 1.0f) * 0.2f;
+        _isShown = true;
+    }
+    bool _isShown;
+    private void Update()
+    {
+        float distDisappear = 10000.0f;
+        float dist = Vector3.Distance(Camera.main.transform.position, this.gameObject.transform.position);
+        bool shouldBeVisible = dist < distDisappear;
+        if (_isShown != shouldBeVisible)
+        {
+            foreach (Transform t in this.gameObject.transform)
+            {
+                t.gameObject.SetActive(shouldBeVisible);
+            }
+            _isShown = shouldBeVisible;
+        }
+        
     }
 }
