@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TreeCollectible : MonoBehaviour
 {
-    public static float ReadyDelay = 10.0f;
+    public float ReadyDelay = 30f;
     public Color Color;
     public float _timeGain;
 
