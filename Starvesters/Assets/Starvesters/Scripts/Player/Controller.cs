@@ -46,6 +46,9 @@ public class Controller : MonoBehaviour
 
     void Start()
     {
+        // Look the sun first
+        transform.LookAt(Vector3.zero);
+
         qwerty = new KeyMap(KeyCode.LeftShift, KeyCode.W, KeyCode.S, KeyCode.D, KeyCode.A);
         azerty = new KeyMap(KeyCode.LeftShift, KeyCode.Z, KeyCode.S, KeyCode.Q, KeyCode.D);
         SetKeyboardLayout();
