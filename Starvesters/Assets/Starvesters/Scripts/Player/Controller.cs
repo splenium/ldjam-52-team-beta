@@ -142,7 +142,7 @@ public class Controller : MonoBehaviour
 
         var right = this.gameObject.transform.right * deltaMousePos.x * LookSpeedMouse;
         var up = this.gameObject.transform.up * deltaMousePos.y * LookSpeedMouse;
-        var quat = Quaternion.LookRotation(this.gameObject.transform.forward + right + up, this.gameObject.transform.up + this.gameObject.transform.right*LookSpeedMouse * pitch* PitchSpeed);
+        var quat = Quaternion.LookRotation(this.gameObject.transform.forward + right + up, this.gameObject.transform.up + this.gameObject.transform.right*LookSpeedMouse * pitch * PitchSpeed * Time.deltaTime);
         rigidBody.MoveRotation(quat);
         rigidBody.maxAngularVelocity = 0.0f;
 

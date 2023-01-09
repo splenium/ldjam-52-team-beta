@@ -10163,7 +10163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3002463317795710420
 Transform:
   m_ObjectHideFlags: 0
@@ -10186,7 +10186,7 @@ Transform:
   - {fileID: 3002463316826621056}
   - {fileID: 2172276662978847436}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3002463317795710423
 MonoBehaviour:
@@ -10324,7 +10324,7 @@ MonoBehaviour:
   MouseLock: 0
   LookSpeedMouse: 0.1
   DirectionSmooth: 1
-  PitchSpeed: 0.3
+  PitchSpeed: 15
   Decay: 4
   MinimumSpeed: 10
   BoostFactor: 10
