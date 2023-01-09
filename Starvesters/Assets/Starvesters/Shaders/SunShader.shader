@@ -168,7 +168,7 @@ Shader "Unlit/SunShader"
             fixed4 frag(v2f i) : SV_Target
             {
                 _time = _Time.y*.3;
-                float4 col = rdr((i.uv-.5)*2.,i.uv)*2.0;
+                float4 col = rdr((i.uv-.5)*2.,i.uv)*1.5;
                 return col;
             }
             ENDCG

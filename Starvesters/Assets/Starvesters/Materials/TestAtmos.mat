@@ -135,13 +135,13 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _PlanetAColA: {r: 0.033018887, g: 0.820487, b: 1, a: 0}
     - _PlanetAColB: {r: 0.8207547, g: 0.7306811, b: 0.127759, a: 0}
-    - _PlanetAPos: {r: 3108.9465, g: 0, b: -7418.002, a: 0}
+    - _PlanetAPos: {r: 5863.6167, g: 0, b: -5505.4736, a: 0}
     - _PlanetBColA: {r: 0.7372549, g: 0.24313726, b: 0.18431373, a: 0}
     - _PlanetBColB: {r: 0.810094, g: 0.8867924, b: 0.10457456, a: 0}
-    - _PlanetBPos: {r: 10305.099, g: 0, b: -10899.751, a: 0}
+    - _PlanetBPos: {r: 144.2963, g: 0, b: 14999.388, a: 0}
     - _PlanetCColA: {r: 0.38959596, g: 0.40492925, b: 0.8018868, a: 0}
     - _PlanetCColB: {r: 0.6764121, g: 0, b: 1, a: 0}
-    - _PlanetCPos: {r: -10747.516, g: 0, b: -22571.93, a: 0}
+    - _PlanetCPos: {r: 23191.316, g: 0, b: 9336.096, a: 0}
     - _PlanetCol: {r: 0, g: 0, b: 0, a: 0}
     - _PlanetPos: {r: 0, g: 0, b: 0, a: 0}
     - _PlanetPosition: {r: 0, g: 0, b: 0, a: 0}
