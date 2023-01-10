@@ -101,19 +101,13 @@ public class Controller : MonoBehaviour
             Debug.Log("Mouse is free");
             Cursor.lockState = CursorLockMode.None;
         }
-        Debug.Log(Cursor.lockState.ToString());
     }
 
 
 
     void Update()
     {
-        if(MouseLock && Input.GetButtonUp("Fire1"))
-        {
-            MouseLock = false;
-            MouseChanged();
-        }
-        if (Input.GetKeyUp("escape"))
+        if (Input.GetKeyUp("escape") || MouseLock && Input.GetButtonUp("Fire1"))
         {
             MouseLock = !MouseLock;
             MouseChanged();
