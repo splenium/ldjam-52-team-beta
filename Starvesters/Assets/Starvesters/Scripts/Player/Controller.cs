@@ -94,13 +94,11 @@ public class Controller : MonoBehaviour
         if (!MouseLock)
         {
             Debug.Log("Mouse is locked");
-            //Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
             Debug.Log("Mouse is free");
-            //Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
         Debug.Log(Cursor.lockState.ToString());
