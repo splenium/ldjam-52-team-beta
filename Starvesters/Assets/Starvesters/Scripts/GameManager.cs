@@ -17,15 +17,15 @@ public class GameManager : MonoBehaviour
     public GameObject _playerElements;
     public GameObject _camera;
 
+    public bool MouseLock;
+
     public float _winningTime;
     public float _remainingTime;
     public bool TimerIsRunning = true;
 
-
     public Color _actualSunColor;
     public HandleSun _handleSun;
     private GameObject SunRenderer;
-
 
     public Canvas _menu;
     public TextMeshProUGUI _teshMeshProInformationMessage;
@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 _showHideAtmospheres.Visible = true;
+                SetMouseLock(true);
                 break;
         }
     }
@@ -126,8 +127,23 @@ public class GameManager : MonoBehaviour
     private void FixedUpdate()
     {
         //Debug.Log($"{sunScaleTarget},  {SunRenderer.transform.localScale} = {Vector3.MoveTowards(SunRenderer.transform.localScale, sunScaleTarget, SunScaleSpeed * Time.fixedDeltaTime)}");
-        // Sun scale
+        // Sun scale speed
         SunRenderer.transform.localScale = Vector3.MoveTowards(SunRenderer.transform.localScale, sunScaleTarget, SunScaleSpeed * Time.fixedDeltaTime);    
+    }
+
+    void SetMouseLock(bool newState)
+    {
+        MouseLock = newState;
+        if (!MouseLock)
+        {
+            Debug.Log("Mouse is free");
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Debug.Log("Mouse is lock");
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     void Update()
@@ -143,6 +159,10 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case GameStateEnum.Played:
+                if (Input.GetKeyUp("escape") || !MouseLock && Input.GetButtonUp("Fire1"))
+                {
+                    SetMouseLock(!MouseLock);
+                }
                 Timer();
                 CalculateSunScale();
                 break;
@@ -163,6 +183,7 @@ public class GameManager : MonoBehaviour
         {
             if (_remainingTime >= _winningTime)
             {
+                SetMouseLock(false);
                 _teshMeshProInformationMessage.text = _winningMessage;
                 _menu.gameObject.SetActive(true);
 
@@ -181,6 +202,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                SetMouseLock(false);
                 TimerIsRunning = false;
                 TimerFinishEvent?.Invoke();
 

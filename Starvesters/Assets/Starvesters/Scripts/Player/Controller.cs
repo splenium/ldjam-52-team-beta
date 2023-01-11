@@ -9,7 +9,6 @@ public class Controller : MonoBehaviour
 {
     public float AccelerationFactor;
     public float PlanetAccelerationFactor;
-    public bool MouseLock;
     public float LookSpeedMouse;
 
     public float DirectionSmooth;
@@ -52,7 +51,6 @@ public class Controller : MonoBehaviour
         qwerty = new KeyMap(KeyCode.LeftShift, KeyCode.W, KeyCode.S, KeyCode.D, KeyCode.A);
         azerty = new KeyMap(KeyCode.LeftShift, KeyCode.Z, KeyCode.S, KeyCode.Q, KeyCode.D);
         SetKeyboardLayout();
-        MouseChanged();
     }
 
     void SetKeyboardLayout()
@@ -89,30 +87,8 @@ public class Controller : MonoBehaviour
         return nearest;
     }
 
-    void MouseChanged()
-    {
-        if (!MouseLock)
-        {
-            Debug.Log("Mouse is locked");
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Debug.Log("Mouse is free");
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
-
-
-
     void Update()
     {
-        if (Input.GetKeyUp("escape") || MouseLock && Input.GetButtonUp("Fire1"))
-        {
-            MouseLock = !MouseLock;
-            MouseChanged();
-        }
-
         if(Input.GetKeyUp("k"))
         {
             isQwerty = !isQwerty;
@@ -139,7 +115,7 @@ public class Controller : MonoBehaviour
         Avatar.Acceleration = GetAxis(Axes.Vertical) * Mathf.Clamp01(rigidBody.velocity.magnitude / 350.0f);
 
         Vector2 deltaMousePos;
-        if (!MouseLock)
+        if (GameManager.Instance.MouseLock)
         {
             deltaMousePos = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         } else
